@@ -1,13 +1,8 @@
 import * as React from 'react';
-import {SafeAreaView, View, Text, Pressable} from 'react-native';
-import {styles} from './styles';
-import Icon from '../Icon';
-import ProgressCircle from 'react-native-progress-circle';
-import ListText from '../ListText';
-import {COLORS} from '../../constants/colors';
-import Swipeable from 'react-native-gesture-handler/Swipeable';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import Swipeable from 'react-native-gesture-handler/Swipeable';
 import {SwipeActions} from '../SwipeActions.tsx';
+import {SwipableComponentProps} from './types.js';
 const SwipableComponent = ({
   children,
   done,
@@ -16,7 +11,7 @@ const SwipableComponent = ({
   skip,
   submitted,
   onPressDone,
-}) => {
+}: SwipableComponentProps) => {
   return (
     <GestureHandlerRootView>
       <Swipeable

@@ -1,20 +1,19 @@
 import * as React from 'react';
 import {Pressable, View} from 'react-native';
 import ListText from '../ListText';
-import {COLORS} from '../../constants/colors';
 import {styles} from './styles';
 import Icon from '../Icon';
+import {SwipeActionsProps} from './types';
 
-export function SwipeActions({deletee, done, onPressDone, skip, submitted}) {
+export function SwipeActions({
+  deletee,
+  done,
+  onPressDone,
+  skip,
+  submitted,
+}: SwipeActionsProps) {
   return (
-    <View
-      style={{
-        flexDirection: 'row',
-        borderTopRightRadius: 7,
-        overflow: 'hidden',
-        height: 90,
-        borderBottomRightRadius: 7,
-      }}>
+    <View style={styles.mainContainer}>
       {done ? (
         <Pressable
           onPress={onPressDone}

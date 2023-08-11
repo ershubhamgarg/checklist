@@ -11,27 +11,19 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingRight: 20,
   },
-  txt: e => ({
-    fontSize: e ? 14 : 16,
-  }),
-  backIconContainer: e => ({
-    flex: e ? 0.3 : 0.2,
+  backIconContainer: {
     flexDirection: 'row',
-    // backgroundColor: 'red',
-    // alignItems: 'center',
     justifyContent: 'flex-start',
     alignItems: 'center',
-  }),
-  titleContainer: e => ({
-    flex: e ? 0.5 : 0.8,
-    // backgroundColor: 'yellow',
-    alignItems: 'center',
-    justifyContent: 'center',
-  }),
-  buttonContainer: {
-    flex: 0.2,
-    // backgroundColor: 'orange',
+  },
+  titleContainer: {
     alignItems: 'center',
     justifyContent: 'center',
   },
+  buttonContainer: {
+    flex: 0.2,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  title: {fontSize: 16},
 });

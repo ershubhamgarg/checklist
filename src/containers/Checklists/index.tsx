@@ -1,4 +1,4 @@
-import {useNavigation} from '@react-navigation/native';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
 import * as React from 'react';
 import {FlatList, Pressable, SafeAreaView} from 'react-native';
 import Header from '../../components/AppHeader';
@@ -7,6 +7,7 @@ import ChecklistItem from '../../components/ChecklistItem';
 import json from './../../json/ChecklistHome.json';
 import {styles} from './styles';
 import Icon from '../../components/Icon';
+import {ChecklistItemProps} from './type';
 
 export function Checklists() {
   const navigation = useNavigation();
@@ -19,7 +20,7 @@ export function Checklists() {
     navigate('PreDepartureList');
   };
 
-  const onListCardPress = e => {
+  const onListCardPress = () => {
     // alert(e.title);
   };
 
@@ -27,18 +28,18 @@ export function Checklists() {
     // alert('Add');
   };
 
-  const _renderItem = ({item, index}) => {
+  const _renderItem = ({item, index}: ChecklistItemProps) => {
     return (
       <ChecklistItem item={item} index={index} onCardPress={onListCardPress} />
     );
   };
 
-  const _listHeader = ({item, index}) => {
+  const _listHeader = () => {
     return <ChecklistHeader onCardPress={onHeaderCardPress} />;
   };
   return (
     <SafeAreaView style={styles.container}>
-      <Header onBackPress={goback} title={'Checklists'}></Header>
+      <Header onBackPress={goback} title={'Checklists'} />
 
       <FlatList
         onRefresh={() => {}}

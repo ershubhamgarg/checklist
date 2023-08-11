@@ -1,27 +1,21 @@
 import * as React from 'react';
-import {SafeAreaView, View, Text, Pressable} from 'react-native';
-import {styles} from './styles';
-import Icon from '../Icon';
+import {Pressable, View} from 'react-native';
 import ProgressCircle from 'react-native-progress-circle';
-import ListText from '../ListText';
 import {COLORS} from '../../constants/colors';
+import Icon from '../Icon';
+import ListText from '../ListText';
+import {styles} from './styles';
+import {ChecklistHeaderProps} from './types';
 
-const ChecklistHeader = ({title, children, onBackPress, onCardPress}) => {
+const ChecklistHeader = ({onCardPress}: ChecklistHeaderProps) => {
   return (
     <View style={styles.container}>
-      <ListText medium style={{fontSize: 14}}>
+      <ListText medium style={styles.headerTitle}>
         {'Pre-Departure Documents List'}
       </ListText>
-      <ListText
-        italic
-        style={{
-          fontSize: 12,
-          marginBottom: 12,
-          marginTop: 4,
-        }}>
+      <ListText italic style={styles.headerSubTitle}>
         {'List of all required documents for your upcoming assignment'}
       </ListText>
-
       <Pressable onPress={onCardPress} style={styles.headerContainer}>
         <View style={styles.progressContainer}>
           <ProgressCircle
@@ -31,13 +25,13 @@ const ChecklistHeader = ({title, children, onBackPress, onCardPress}) => {
             color={COLORS.MARLOW_BLUE}
             shadowColor={COLORS.WHITE}
             bgColor={COLORS.WHITE}>
-            <ListText bold style={{fontSize: 13}}>
+            <ListText bold style={styles.percentText}>
               {'60%'}
             </ListText>
           </ProgressCircle>
         </View>
         <View style={styles.titleContainer}>
-          <ListText style={{fontSize: 14}}>{'Review List'}</ListText>
+          <ListText style={styles.rl}>{'Review List'}</ListText>
         </View>
         <View style={styles.buttonContainer}>
           <Icon name={'next'} />

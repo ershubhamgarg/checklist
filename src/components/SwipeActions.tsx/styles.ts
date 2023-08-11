@@ -2,6 +2,13 @@ import {StyleSheet} from 'react-native';
 import {COLORS} from '../../constants/colors';
 
 export const styles = StyleSheet.create({
+  mainContainer: {
+    flexDirection: 'row',
+    borderTopRightRadius: 7,
+    overflow: 'hidden',
+    height: 90,
+    borderBottomRightRadius: 7,
+  },
   container: {
     width: 100,
     height: 90,

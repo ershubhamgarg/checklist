@@ -1,30 +1,20 @@
+import {useNavigation} from '@react-navigation/native';
 import * as React from 'react';
 import {
-  Text,
   FlatList,
   SafeAreaView,
-  View,
   StyleSheet,
-  StatusBar,
   TouchableOpacity,
+  View,
 } from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
-import {
-  clearMyList,
-  getMyListRequest,
-} from '../../store/reducers/mychecklistreducer';
-import {RootState} from '../../store';
-import Header from '../../components/AppHeader';
-import {styles} from './styles';
-import {useNavigation} from '@react-navigation/native';
-import ChecklistHeader from '../../components/ChecklistHeader';
 import {SceneMap, TabView} from 'react-native-tab-view';
+import Header from '../../components/AppHeader';
+import Icon from '../../components/Icon';
 import {ListProgress} from '../../components/ListProgress';
-import PDDListJson from './../../json/PDDList.json';
-import {ScrollView} from 'react-native-gesture-handler';
 import ListText from '../../components/ListText';
 import {COLORS} from '../../constants/colors';
-import Icon from '../../components/Icon';
+import PDDListJson from './../../json/PDDList.json';
+import {styles} from './styles';
 export function PreDepartureList() {
   const navigation = useNavigation();
   const [tab, setTab] = React.useState(0);

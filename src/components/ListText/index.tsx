@@ -1,19 +1,28 @@
 import * as React from 'react';
 import {Text} from 'react-native';
+import {ListTextProps} from './types';
+import {FONT} from '../../constants/fonts';
 
-const ListText = ({bold, italic, children, style, medium, ...props}) => {
+const ListText = ({
+  bold,
+  italic,
+  children,
+  style,
+  medium,
+  ...props
+}: ListTextProps) => {
   return (
     <Text
       {...props}
       style={[
         {
           fontFamily: medium
-            ? 'Roboto-Medium'
+            ? FONT.ROBOTO_MEDIUM
             : italic
-            ? 'Roboto-Italic'
+            ? FONT.ROBOTO_ITALIC
             : bold
-            ? 'Roboto-Bold'
-            : 'Roboto-Regular',
+            ? FONT.ROBOTO_BOLD
+            : FONT.ROBOTO_REGULAR,
         },
         style,
       ]}>

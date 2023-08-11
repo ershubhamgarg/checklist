@@ -1,31 +1,23 @@
 import * as React from 'react';
-import {SafeAreaView, View, Text, Pressable} from 'react-native';
-import {styles} from './styles';
+import {Pressable, View} from 'react-native';
 import Icon from '../Icon';
-import ProgressCircle from 'react-native-progress-circle';
 import ListText from '../ListText';
-import {COLORS} from '../../constants/colors';
-import Swipeable from 'react-native-gesture-handler/Swipeable';
-import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import SwipableComponent from '../SwipableComponent';
-const ChecklistItem = ({item, index, onCardPress}) => {
+import {styles} from './styles';
+import {ChecklistItemProps} from './types';
+
+const ChecklistItem = ({item, index}: ChecklistItemProps) => {
   const [isOpen, setOpen] = React.useState(false);
   const {title, createdOn, lastItem} = item;
-
+  const br = isOpen ? 0 : 7;
   return (
     <View style={styles.container}>
-      {!index && (
-        <View style={{marginTop: 30}}>
-          <ListText medium style={{fontSize: 14}}>
+      {!index && ( // for rendering on first index
+        <View style={styles.outer}>
+          <ListText medium style={styles.title}>
             {'My Checklists'}
           </ListText>
-          <ListText
-            italic
-            style={{
-              fontSize: 12,
-              marginBottom: 12,
-              marginTop: 4,
-            }}>
+          <ListText italic style={styles.subtitle}>
             {'Create your own personal checklist'}
           </ListText>
         </View>
@@ -36,24 +28,21 @@ const ChecklistItem = ({item, index, onCardPress}) => {
         skip={item.optional}
         submitted={item.attentionRequired}
         onPressDone={() => {
-          alert(item.title);
+          console.log(item.title);
         }}
         setOpen={setOpen}>
         <Pressable
           // onPress={() => onCardPress(item)}
-          style={styles.headerContainer(isOpen)}>
+          style={[styles.headerContainer, {borderRadius: br}]}>
           <View style={styles.titleContainer}>
-            <ListText numberOfLines={1} style={{fontSize: 14}}>
+            <ListText numberOfLines={1} style={styles.title}>
               {title}
             </ListText>
-            <ListText
-              style={{fontSize: 12, color: COLORS.MARLOW_GREY, marginTop: 4}}>
-              {'Date created: '}
-              {createdOn}
+            <ListText style={styles.date}>
+              {'Date created: ' + createdOn}
             </ListText>
-            <ListText style={{fontSize: 12, color: COLORS.MARLOW_GREY}}>
-              {'Last item added: '}
-              {lastItem}
+            <ListText style={styles.last}>
+              {'Last item added: ' + lastItem}
             </ListText>
           </View>
           <View style={styles.buttonContainer}>
@@ -64,5 +53,4 @@ const ChecklistItem = ({item, index, onCardPress}) => {
     </View>
   );
 };
-
 export default ChecklistItem;

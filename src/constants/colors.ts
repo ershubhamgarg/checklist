@@ -1,0 +1,9 @@
+export const COLORS = {
+  MARLOW_NAVY: '#ECEEF0',
+  MARLOW_BLUE: '#005AA5',
+  WHITE: '#ffffff',
+  MARLOW_GREY: '#AAAAAA',
+  MARLOW_GREEN: '#4F9B90',
+  MARLOW_RED: '#D87C81',
+  MARLOW_DARK_BLUE: '#0A2644',
+};

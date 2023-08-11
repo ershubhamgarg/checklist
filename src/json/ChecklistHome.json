@@ -1,0 +1,48 @@
+[
+  {
+    "title": "Restaurants to visit in France",
+    "createdOn": "12.04.22",
+    "lastItem": "La Parfait",
+    "mandatory": true
+  },
+  {
+    "title": "Things to do in Germany on a weekend",
+    "createdOn": "06.09.21",
+    "lastItem": "Visit the park",
+    "attentionRequired": true
+  },
+  {
+    "title": "Restaurants to visit in France",
+    "createdOn": "12.04.22",
+    "lastItem": "La Parfait",
+    "optional": true
+  },
+  {
+    "title": "Things to do in Germany on a weekend",
+    "createdOn": "06.09.21",
+    "lastItem": "Visit the park",
+    "personal": true
+  },
+  {
+    "title": "Restaurants to visit in France",
+    "createdOn": "12.04.22",
+    "lastItem": "La Parfait",
+    "isSkipped": true
+  },
+  {
+    "title": "Things to do in Germany on a weekend",
+    "createdOn": "06.09.21",
+    "lastItem": "Visit the park",
+    "isDone": true
+  },
+  {
+    "title": "Things to do in Germany on a weekend",
+    "createdOn": "06.09.21",
+    "lastItem": "Visit the park"
+  },
+  {
+    "title": "Things to do in Germany on a weekend",
+    "createdOn": "06.09.21",
+    "lastItem": "Visit the park"
+  }
+]

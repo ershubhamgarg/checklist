@@ -32,6 +32,12 @@ const Icon = ({name}) => {
       style={{height: 20, width: 20}}
       tintColor={COLORS.WHITE}
     />
+  ) : name === 'attention' ? (
+    <Image
+      source={require('./../../assets/images/attention.png')}
+      resizeMode={'contain'}
+      style={{height: 12, width: 12, marginRight: 5}}
+    />
   ) : name === 'done' ? (
     <Image
       source={require('./../../assets/images/done.png')}

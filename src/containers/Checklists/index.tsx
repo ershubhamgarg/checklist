@@ -20,8 +20,8 @@ export function Checklists() {
     navigate('PreDepartureList');
   };
 
-  const onListCardPress = () => {
-    // alert(e.title);
+  const onListCardPress = e => {
+    navigate('EditList', {listData: e});
   };
 
   const onPressAdd = () => {

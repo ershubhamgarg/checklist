@@ -51,6 +51,12 @@ const Icon = ({name}: IconProps) => {
       resizeMode={'contain'}
       style={styles.cross}
     />
+  ) : name === 'item' ? (
+    <Image
+      source={require('./../../assets/images/item.png')}
+      resizeMode={'contain'}
+      style={styles.next}
+    />
   ) : (
     <Image
       source={require('./../../assets/images/left.png')}

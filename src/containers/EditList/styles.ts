@@ -5,7 +5,7 @@ import {FONT} from '../../constants/fonts';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: `${COLORS.MARLOW_NAVY_800}D1`,
+    backgroundColor: `${COLORS.MARLOW_NAVY}`,
   },
   btnContainer: {
     paddingHorizontal: 50,
@@ -49,6 +49,20 @@ export const styles = StyleSheet.create({
     paddingLeft: 20,
 
     width: '90%',
+  },
+  edit: {
+    borderColor: COLORS.MARLOW_BUTTON_BLUE,
+    borderWidth: 2,
+    paddingVertical: 15,
+    paddingHorizontal: 10,
+    width: 100,
+    borderRadius: 30,
+    alignItems: 'center',
+    marginRight: 20,
+  },
+  editText: {
+    fontSize: 14,
+    color: COLORS.MARLOW_BUTTON_BLUE,
   },
   done: {
     backgroundColor: COLORS.MARLOW_BUTTON_BLUE,

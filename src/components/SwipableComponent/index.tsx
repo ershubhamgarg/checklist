@@ -11,6 +11,7 @@ const SwipableComponent = ({
   skip,
   submitted,
   onPressDone,
+  personal,
 }: SwipableComponentProps) => {
   return (
     <GestureHandlerRootView>
@@ -20,6 +21,7 @@ const SwipableComponent = ({
         onSwipeableWillClose={() => setOpen(false)}
         renderRightActions={() => (
           <SwipeActions
+            personal={personal}
             done={done}
             skip={skip}
             deletee={deletee}

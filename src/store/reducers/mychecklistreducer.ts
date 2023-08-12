@@ -10,20 +10,12 @@ const myChecklistSlice = createSlice({
   initialState,
   name: 'MyChecklistReducer',
   reducers: {
-    getMyListRequest: state => {
-      state.loading = true;
-    },
-    getMyListSuccess: (state, action) => {
-      state.myList = state.myList.concat(action.payload);
-      state.loading = false;
-    },
-    clearMyList: state => {
-      state.myList = initialState.myList;
+    addNewList: (state, action) => {
+      state.myList.push(action.payload);
     },
   },
 });
 
-export const {getMyListRequest, getMyListSuccess, clearMyList} =
-  myChecklistSlice.actions;
+export const {addNewList} = myChecklistSlice.actions;
 
 export const MyChecklistReducer = myChecklistSlice.reducer;

@@ -6,7 +6,7 @@ import SwipableComponent from '../SwipableComponent';
 import {styles} from './styles';
 import {ChecklistItemProps} from './types';
 
-const ChecklistItem = ({item, index}: ChecklistItemProps) => {
+const ChecklistItem = ({item, index, onCardPress}: ChecklistItemProps) => {
   const [isOpen, setOpen] = React.useState(false);
   const {title, createdOn, lastItem} = item;
   const br = isOpen ? 0 : 7;
@@ -32,7 +32,7 @@ const ChecklistItem = ({item, index}: ChecklistItemProps) => {
         }}
         setOpen={setOpen}>
         <Pressable
-          // onPress={() => onCardPress(item)}
+          onPressOut={() => onCardPress(item)}
           style={[styles.headerContainer, {borderRadius: br}]}>
           <View style={styles.titleContainer}>
             <ListText numberOfLines={1} style={styles.title}>

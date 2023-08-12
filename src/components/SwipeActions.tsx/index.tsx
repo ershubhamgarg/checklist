@@ -11,9 +11,15 @@ export function SwipeActions({
   onPressDone,
   skip,
   submitted,
+  personal,
 }: SwipeActionsProps) {
+  const br = personal ? 0 : 7;
   return (
-    <View style={styles.mainContainer}>
+    <View
+      style={[
+        styles.mainContainer,
+        {borderTopRightRadius: br, borderBottomRightRadius: br},
+      ]}>
       {done ? (
         <Pressable
           onPress={onPressDone}
@@ -35,7 +41,12 @@ export function SwipeActions({
         </Pressable>
       ) : null}
       {deletee ? (
-        <Pressable style={[styles.container, styles.delete]}>
+        <Pressable
+          style={[
+            styles.container,
+            styles.delete,
+            {borderTopRightRadius: br, borderBottomRightRadius: br},
+          ]}>
           <Icon name={'delete'} />
           <ListText medium style={styles.txt}>
             DELETE

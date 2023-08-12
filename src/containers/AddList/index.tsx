@@ -33,10 +33,11 @@ export function AddList() {
       id: Date.now().toString(),
       personal: true,
       createdOn: Date.now(),
+      items: [],
     };
     console.log('new list to be added : ', newListObj);
     dispatch(addNewList(newListObj));
-    navigation.replace('EditList');
+    navigation.replace('EditList', {listData: newListObj});
   };
   return (
     <BlurView

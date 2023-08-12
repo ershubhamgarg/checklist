@@ -1,16 +1,15 @@
 import * as React from 'react';
 
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {AddList} from '../containers/AddList';
 import {Checklists} from '../containers/Checklists';
+import {EditList} from '../containers/EditList';
 import {Login} from '../containers/Login';
 import {PreDepartureList} from '../containers/PreDepartureList';
-import {AddList} from '../containers/AddList';
-import {COLORS} from '../constants/colors';
-import {EditList} from '../containers/EditList';
 
 const Stack = createNativeStackNavigator();
 
-const ChecklistStack = (): JSX.Element => {
+const ChecklistStack = () => {
   return (
     <Stack.Navigator
       screenOptions={{headerShown: false}}

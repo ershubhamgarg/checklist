@@ -11,32 +11,34 @@ const Header = ({
   onBackPress,
   backLabel,
   backButtonBackgroundStyle,
-}: AppHeaderProps) => {
-  const f1 = children ? 0.3 : 0.2;
-  const f2 = children ? 0.5 : 0.8;
-  const fs = children ? 14 : 16;
-  return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.headerContainer}>
-        <View style={[styles.backIconContainer, {flex: f1}]}>
-          <Pressable style={backButtonBackgroundStyle} onPress={onBackPress}>
-            <Icon />
-          </Pressable>
-          {children ? (
-            <ListText style={{fontSize: fs}}>{backLabel}</ListText>
-          ) : null}
+}) =>
+  // : AppHeaderProps
+  {
+    const f1 = children ? 0.3 : 0.2;
+    const f2 = children ? 0.5 : 0.8;
+    const fs = children ? 14 : 16;
+    return (
+      <SafeAreaView style={styles.container}>
+        <View style={styles.headerContainer}>
+          <View style={[styles.backIconContainer, {flex: f1}]}>
+            <Pressable style={backButtonBackgroundStyle} onPress={onBackPress}>
+              <Icon />
+            </Pressable>
+            {children ? (
+              <ListText style={{fontSize: fs}}>{backLabel}</ListText>
+            ) : null}
+          </View>
+          <View style={[styles.titleContainer, {flex: f2}]}>
+            {children ? null : (
+              <ListText bold style={styles.title}>
+                {title}
+              </ListText>
+            )}
+          </View>
+          <View style={styles.buttonContainer}>{children}</View>
         </View>
-        <View style={[styles.titleContainer, {flex: f2}]}>
-          {children ? null : (
-            <ListText bold style={styles.title}>
-              {title}
-            </ListText>
-          )}
-        </View>
-        <View style={styles.buttonContainer}>{children}</View>
-      </View>
-    </SafeAreaView>
-  );
-};
+      </SafeAreaView>
+    );
+  };
 
 export default Header;

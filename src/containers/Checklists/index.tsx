@@ -1,17 +1,20 @@
-import {NavigationProp, useNavigation} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import * as React from 'react';
 import {FlatList, Pressable, SafeAreaView} from 'react-native';
+import {useSelector} from 'react-redux';
 import Header from '../../components/AppHeader';
 import ChecklistHeader from '../../components/ChecklistHeader';
 import ChecklistItem from '../../components/ChecklistItem';
-import json from './../../json/ChecklistHome.json';
-import {styles} from './styles';
 import Icon from '../../components/Icon';
+import {styles} from './styles';
 import {ChecklistItemProps} from './type';
 
-export function Checklists() {
+export const Checklists = () => {
   const navigation = useNavigation();
   const {navigate} = navigation;
+
+  const {myList} = useSelector(state => state.mychecklistreducer);
+
   const goback = () => {
     navigation.goBack();
   };
@@ -28,11 +31,17 @@ export function Checklists() {
     navigate('AddList');
   };
 
-  const _renderItem = ({item, index}: ChecklistItemProps) => {
-    return (
-      <ChecklistItem item={item} index={index} onCardPress={onListCardPress} />
-    );
-  };
+  const _renderItem = ({item, index}) =>
+    // : ChecklistItemProps
+    {
+      return (
+        <ChecklistItem
+          item={item}
+          index={index}
+          onCardPress={onListCardPress}
+        />
+      );
+    };
 
   const _listHeader = () => {
     return <ChecklistHeader onCardPress={onHeaderCardPress} />;
@@ -47,11 +56,11 @@ export function Checklists() {
         renderItem={_renderItem}
         ListHeaderComponent={_listHeader}
         showsVerticalScrollIndicator={false}
-        data={json}
+        data={myList}
       />
       <Pressable onPress={onPressAdd}>
         <Icon name="add" />
       </Pressable>
     </SafeAreaView>
   );
-}
+};

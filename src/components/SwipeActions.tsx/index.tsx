@@ -12,7 +12,8 @@ export function SwipeActions({
   skip,
   submitted,
   personal,
-}: SwipeActionsProps) {
+}) // : SwipeActionsProps
+{
   const br = personal ? 0 : 7;
   return (
     <View

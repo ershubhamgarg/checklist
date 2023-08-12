@@ -12,27 +12,29 @@ const SwipableComponent = ({
   submitted,
   onPressDone,
   personal,
-}: SwipableComponentProps) => {
-  return (
-    <GestureHandlerRootView>
-      <Swipeable
-        overshootRight={false}
-        onSwipeableWillOpen={() => setOpen(true)}
-        onSwipeableWillClose={() => setOpen(false)}
-        renderRightActions={() => (
-          <SwipeActions
-            personal={personal}
-            done={done}
-            skip={skip}
-            deletee={deletee}
-            submitted={submitted}
-            onPressDone={onPressDone}
-          />
-        )}>
-        {children}
-      </Swipeable>
-    </GestureHandlerRootView>
-  );
-};
+}) =>
+  // : SwipableComponentProps
+  {
+    return (
+      <GestureHandlerRootView>
+        <Swipeable
+          overshootRight={false}
+          onSwipeableWillOpen={() => setOpen(true)}
+          onSwipeableWillClose={() => setOpen(false)}
+          renderRightActions={() => (
+            <SwipeActions
+              personal={personal}
+              done={done}
+              skip={skip}
+              deletee={deletee}
+              submitted={submitted}
+              onPressDone={onPressDone}
+            />
+          )}>
+          {children}
+        </Swipeable>
+      </GestureHandlerRootView>
+    );
+  };
 
 export default SwipableComponent;

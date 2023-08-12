@@ -8,8 +8,9 @@ import {ChecklistItemProps} from './types';
 
 const ChecklistItem = ({item, index, onCardPress}: ChecklistItemProps) => {
   const [isOpen, setOpen] = React.useState(false);
-  const {title, createdOn, lastItem} = item;
+  const {title, createdOn, lastItem, items} = item;
   const br = isOpen ? 0 : 7;
+  let LastItem = items?.[items?.length - 1].title || 'None';
   return (
     <View style={styles.container}>
       {!index && ( // for rendering on first index
@@ -42,7 +43,7 @@ const ChecklistItem = ({item, index, onCardPress}: ChecklistItemProps) => {
               {'Date created: ' + createdOn}
             </ListText>
             <ListText style={styles.last}>
-              {'Last item added: ' + lastItem}
+              {'Last item added: ' + LastItem}
             </ListText>
           </View>
           <View style={styles.buttonContainer}>

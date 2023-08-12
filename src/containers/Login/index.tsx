@@ -5,7 +5,7 @@ import {styles} from './styles';
 
 export function Login() {
   const navigation = useNavigation();
-  const onLoginPress = (): void => {
+  const onLoginPress = () => {
     navigation.navigate('Checklists');
   };
   return (

@@ -1,44 +1,97 @@
 import {useNavigation} from '@react-navigation/native';
 import * as React from 'react';
-import {FlatList, Pressable, SafeAreaView, View} from 'react-native';
+import {FlatList, Keyboard, Pressable, SafeAreaView, View} from 'react-native';
 
 import {} from 'react-native-safe-area-context';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import Header from '../../components/AppHeader';
 import ListText from '../../components/ListText';
 import MyListItem from '../../components/MyListItem';
 import json from './../../json/myList.json';
 import {styles} from './styles';
-export function EditList(props: any) {
+import {saveItemToList} from '../../store/reducers/mychecklistreducer';
+export function EditList(props) {
   const {route} = props;
   const {params} = route;
   const {listData} = params;
-  const data = json.map((item, index) => {
-    return {...item, personal: true, optional: true};
-  });
+
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
   const [editing, setEditing] = React.useState(false);
+  const [text, setText] = React.useState('');
+  const {myList} = useSelector(state => state.mychecklistreducer);
+
+  const [data, setData] = React.useState([]);
+
+  React.useEffect(() => {
+    // let arr = listData?.items?.map((item, index) => {
+    //   return {...item, personal: true, optional: true};
+    // });
+    // setData(arr);
+
+    let arr = myList.filter((item: any) => item.id === listData.id)[0].items;
+    console.log('here', arr);
+    setData(arr);
+  }, [listData, myList]);
 
   const onBack = () => {
     navigation.goBack();
   };
 
   const onEdit = () => {
+    let editObj = {input: true};
+    let arr = data.slice();
+    arr.push(editObj);
+    setData(arr);
     setEditing(true);
   };
 
-  const renderItem = ({item, index}) => (
-    <MyListItem index={index} item={item} onCardPress={() => {}} />
-  );
+  const onSave = () => {
+    if (text.length) {
+      let newItemObj = {
+        title: text,
+        listId: listData.id,
+      };
+      console.log('new item : ', listData, newItemObj);
+      dispatch(saveItemToList(newItemObj));
+    } else {
+      let arr = data;
+      arr.pop();
+      setData(arr);
+    }
+    setEditing(false);
+  };
+
+  const onChange = e => {
+    setText(e);
+  };
+
+  const renderItem = ({item, index}) =>
+    item?.input ? (
+      <MyListItem
+        index={index}
+        input={true}
+        item={item}
+        onCardPress={() => {}}
+        onChange={onChange}
+      />
+    ) : (
+      <MyListItem
+        text={text}
+        index={index}
+        item={item}
+        onCardPress={() => {}}
+      />
+    );
+
   return (
     <SafeAreaView
       // blurRadius={1}
       style={styles.container}>
       <Header backLabel="Lists" onBackPress={onBack}>
         {editing ? (
-          <Pressable onPress={onEdit} style={styles.done}>
+          <Pressable onPress={onSave} style={styles.done}>
             <ListText bold style={styles.doneText}>
               Save
             </ListText>

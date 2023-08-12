@@ -14,4 +14,5 @@ export const styles = StyleSheet.create({
   },
   attention: {height: 12, width: 12, marginRight: 5},
   left: {height: 50, width: 40},
+  cross: {height: 15, width: 15},
 });

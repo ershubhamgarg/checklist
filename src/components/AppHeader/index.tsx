@@ -5,7 +5,13 @@ import ListText from '../ListText';
 import {styles} from './styles';
 import {AppHeaderProps} from './types';
 
-const Header = ({title, children, onBackPress, backLabel}: AppHeaderProps) => {
+const Header = ({
+  title,
+  children,
+  onBackPress,
+  backLabel,
+  backButtonBackgroundStyle,
+}: AppHeaderProps) => {
   const f1 = children ? 0.3 : 0.2;
   const f2 = children ? 0.5 : 0.8;
   const fs = children ? 14 : 16;
@@ -13,7 +19,7 @@ const Header = ({title, children, onBackPress, backLabel}: AppHeaderProps) => {
     <SafeAreaView style={styles.container}>
       <View style={styles.headerContainer}>
         <View style={[styles.backIconContainer, {flex: f1}]}>
-          <Pressable onPress={onBackPress}>
+          <Pressable style={backButtonBackgroundStyle} onPress={onBackPress}>
             <Icon />
           </Pressable>
           {children ? (

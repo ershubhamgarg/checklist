@@ -25,7 +25,7 @@ export function Checklists() {
   };
 
   const onPressAdd = () => {
-    // alert('Add');
+    navigate('AddList');
   };
 
   const _renderItem = ({item, index}: ChecklistItemProps) => {

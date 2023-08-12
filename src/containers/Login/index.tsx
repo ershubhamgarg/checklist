@@ -5,14 +5,13 @@ import {styles} from './styles';
 
 export function Login() {
   const navigation = useNavigation();
-  const {navigate} = navigation;
-
+  const onLoginPress = (): void => {
+    navigation.navigate('Checklists');
+  };
   return (
     <SafeAreaView style={styles.container}>
       <View>
-        <Pressable
-          style={styles.btnContainer}
-          onPress={() => navigate('Checklists')}>
+        <Pressable style={styles.btnContainer} onPress={onLoginPress}>
           <Text style={styles.txt}>Login to checklist</Text>
         </Pressable>
       </View>

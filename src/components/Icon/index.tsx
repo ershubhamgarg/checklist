@@ -45,6 +45,12 @@ const Icon = ({name}: IconProps) => {
       style={styles.next}
       tintColor={COLORS.WHITE}
     />
+  ) : name === 'cross' ? (
+    <Image
+      source={require('./../../assets/images/close.png')}
+      resizeMode={'contain'}
+      style={styles.cross}
+    />
   ) : (
     <Image
       source={require('./../../assets/images/left.png')}

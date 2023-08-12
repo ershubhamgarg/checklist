@@ -30,7 +30,7 @@ export function AddList() {
   const onDone = () => {
     let newListObj = {
       title: text,
-      id: Date.now().toString(),
+      listId: Date.now().toString(),
       personal: true,
       createdOn: Date.now(),
       items: [],

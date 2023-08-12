@@ -43,7 +43,7 @@ const MyListItem = ({item, index, input, text, onChange}) =>
             done={true}
             personal={item.personal}
             onPressDone={() => {
-              console.log(item.title);
+              console.log(item);
             }}
             setOpen={() => {}}>
             <View

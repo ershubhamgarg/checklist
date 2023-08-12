@@ -25,14 +25,13 @@ export function EditList(props) {
   const [data, setData] = React.useState([]);
 
   React.useEffect(() => {
-    // let arr = listData?.items?.map((item, index) => {
-    //   return {...item, personal: true, optional: true};
-    // });
-    // setData(arr);
-
-    let arr = myList.filter((item: any) => item.id === listData.id)[0].items;
-    console.log('here', arr);
-    setData(arr);
+    let arr = myList.filter((item: any) => item.listId === listData.listId)[0]
+      .items;
+    if (arr?.length) {
+      setData(arr);
+    } else {
+      onEdit();
+    }
   }, [listData, myList]);
 
   const onBack = () => {
@@ -41,7 +40,7 @@ export function EditList(props) {
 
   const onEdit = () => {
     let editObj = {input: true};
-    let arr = data.slice();
+    let arr = data ? data.slice() : [];
     arr.push(editObj);
     setData(arr);
     setEditing(true);
@@ -51,9 +50,10 @@ export function EditList(props) {
     if (text.length) {
       let newItemObj = {
         title: text,
-        listId: listData.id,
+        listId: listData.listId,
+        itemId: Date.now().toString(),
       };
-      console.log('new item : ', listData, newItemObj);
+      console.log('new item : ', newItemObj);
       dispatch(saveItemToList(newItemObj));
     } else {
       let arr = data;

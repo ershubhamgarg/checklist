@@ -65,6 +65,7 @@ export function EditList(props: any) {
         title: text,
         listId: listData.listId,
         itemId: Date.now().toString(),
+        personal: true,
       };
 
       dispatch(saveItemToList(newItemObj));

@@ -13,32 +13,84 @@ import Icon from '../../components/Icon';
 import {ListProgress} from '../../components/ListProgress';
 import ListText from '../../components/ListText';
 import {COLORS} from '../../constants/colors';
-import PDDListJson from './../../json/PDDList.json';
+import PDListJson from './../../json/PDList.json';
 import {styles} from './styles';
+import ChecklistItem from '../../components/ChecklistItem';
+import MyListItem from '../../components/MyListItem';
+import PDListItem from '../../components/PDListItem';
+import {useDispatch, useSelector} from 'react-redux';
+import {
+  deleteItemFromPDList,
+  doneItemFromList,
+  doneItemFromPDList,
+  onGetPDList,
+  onGetPDListRequest,
+} from '../../store/reducers/mychecklistreducer';
+import {getPDList} from '../../sagas/myChecklistSaga';
 export function PreDepartureList() {
   const navigation = useNavigation();
   const [tab, setTab] = React.useState(0);
+
+  const {pdList} = useSelector(state => state.mychecklistreducer);
+  const dispatch = useDispatch();
   const goback = () => {
     navigation.goBack();
   };
 
+  React.useEffect(() => {
+    console.log('called');
+    dispatch(onGetPDListRequest());
+  }, []);
+
   const _handleIndexChange = e => {
     setTab(e);
   };
-  const FirstRoute = () => (
-    <View style={[styles2.container, {backgroundColor: COLORS.MARLOW_NAVY}]}>
-      <View style={{padding: 25}}>
-        <ListText italic style={{fontSize: 12}}>
-          Items should only be ticked off once the corresponding original paper
-          document has been added to your Blue Pouch in preparation for
-          departure.
-        </ListText>
+
+  const onPressDone = e => {
+    let listId = pdList[tab].key;
+    let obj = {...e, listId: listId};
+
+    dispatch(doneItemFromPDList(obj));
+  };
+
+  const _renderItem = ({item, index}) =>
+    // : ChecklistItemProps
+    {
+      return (
+        <PDListItem
+          item={item}
+          index={index}
+          onPressDone={onPressDone}
+          // onCardPress={onListCardPress}
+          // onCardPress={() => {}}
+          // onPressDelete={onPressDelete}
+        />
+      );
+    };
+
+  const FirstRoute = ({...e}) => {
+    console.log('roye : ', e.route.key, e.route.items);
+    return (
+      <View style={[styles2.container, {backgroundColor: COLORS.MARLOW_NAVY}]}>
+        <View style={{padding: 25}}>
+          <ListText italic style={{fontSize: 12}}>
+            Items should only be ticked off once the corresponding original
+            paper document has been added to your Blue Pouch in preparation for
+            departure.
+          </ListText>
+        </View>
+        <FlatList renderItem={_renderItem} data={e.route.items} />
       </View>
-    </View>
-  );
-  const SecondRoute = () => (
-    <View style={[styles2.container, {backgroundColor: COLORS.MARLOW_NAVY}]} />
-  );
+    );
+  };
+  const SecondRoute = e => {
+    console.log('roye : ', e);
+    return (
+      <View
+        style={[styles2.container, {backgroundColor: COLORS.MARLOW_NAVY}]}
+      />
+    );
+  };
   const _renderTabBar = props => {
     const {navigationState} = props;
 
@@ -100,9 +152,10 @@ export function PreDepartureList() {
         <ListProgress progress={0.7} />
       </View>
       <TabView
+        // swipeEnabled={false}
         navigationState={{
           index: tab,
-          routes: PDDListJson,
+          routes: pdList,
         }}
         renderScene={_renderScene}
         renderTabBar={_renderTabBar}

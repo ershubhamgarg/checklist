@@ -33,6 +33,12 @@ const Icon = ({name}) =>
         resizeMode={'contain'}
         style={styles.attention}
       />
+    ) : name === 'attention-big' ? (
+      <Image
+        source={require('./../../assets/images/attention.png')}
+        resizeMode={'contain'}
+        style={styles.attentionBig}
+      />
     ) : name === 'done' ? (
       <Image
         source={require('./../../assets/images/done.png')}
@@ -63,6 +69,18 @@ const Icon = ({name}) =>
     ) : name === 'item' ? (
       <Image
         source={require('./../../assets/images/item.png')}
+        resizeMode={'contain'}
+        style={styles.next}
+      />
+    ) : name === 'skipped' ? (
+      <Image
+        source={require('./../../assets/images/skip-blue.png')}
+        resizeMode={'contain'}
+        style={styles.next}
+      />
+    ) : name === 'completed' ? (
+      <Image
+        source={require('./../../assets/images/tick-blue.png')}
         resizeMode={'contain'}
         style={styles.next}
       />

@@ -13,6 +13,7 @@ export const styles = StyleSheet.create({
     shadowOpacity: 1,
   },
   attention: {height: 12, width: 12, marginRight: 5},
+  attentionBig: {height: 20, width: 20, marginRight: 5},
   left: {height: 50, width: 40},
   cross: {height: 15, width: 15},
 });

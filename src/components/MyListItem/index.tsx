@@ -45,9 +45,10 @@ const MyListItem = ({
       return (
         <View style={styles.container}>
           <SwipableComponent
-            deletee={!item.completed}
+            deletee={!item.completed && item.personal}
             done={!item.completed}
             uncheck={item.completed}
+            skip={item.optional}
             personal
             onPressDone={() => {
               onPressDone(item);
@@ -62,7 +63,11 @@ const MyListItem = ({
                 {borderTopWidth: index == 0 ? 1 : 0},
               ]}>
               <View style={{marginRight: 20}}>
-                <Icon name={'item'} />
+                {item.attention ? (
+                  <Icon name={'attention-big'} />
+                ) : (
+                  <Icon name={'item'} />
+                )}
               </View>
               <View style={styles.titleContainer}>
                 <ListText

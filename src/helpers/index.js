@@ -15,6 +15,7 @@ export const saveItemToListHelper = (payload, myList) => {
 };
 
 export const deleteItemFromListHelper = (payload, myList) => {
+  console.log('PD list', myList);
   return myList.map((list, index) => {
     if (list.listId === payload.listId) {
       let newListItems = list.items.filter(e => e.itemId !== payload.itemId);
@@ -26,6 +27,7 @@ export const deleteItemFromListHelper = (payload, myList) => {
 };
 
 export const checkUncheckItemHelper = (payload, myList) => {
+  console.log('PD list', myList);
   return myList.map((list, index) => {
     if (list.listId === payload.listId) {
       let newListItems = list.items.map(e => {

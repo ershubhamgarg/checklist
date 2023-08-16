@@ -1,15 +1,17 @@
 import {createSlice, current} from '@reduxjs/toolkit';
-import {InitialState} from './type';
+// import {InitialState} from './type';
 import {
   checkUncheckItemHelper,
   deleteItemFromListHelper,
   deleteListHelper,
   saveItemToListHelper,
 } from '../../helpers';
-
-const initialState: InitialState = {
+// import PDListJson from './../../json/PDList.json';
+const initialState = {
+  pdList: [],
   myList: [],
   loading: false,
+  pdListLoading: false,
 };
 
 const myChecklistSlice = createSlice({
@@ -40,6 +42,19 @@ const myChecklistSlice = createSlice({
         currentState.myList,
       );
     },
+    onGetPDListRequest: (state, action) => {
+      state.pdListLoading = true;
+    },
+    onGetPDListSuccess: (state, action) => {
+      (state.pdListLoading = false), (state.pdList = action.payload);
+    },
+    doneItemFromPDList: (state, action) => {
+      let currentState = current(state);
+      state.pdList = checkUncheckItemHelper(
+        action.payload,
+        currentState.pdList,
+      );
+    },
   },
 });
 
@@ -49,6 +64,9 @@ export const {
   deleteItemFromList,
   doneItemFromList,
   deleteList,
+  doneItemFromPDList,
+  onGetPDListRequest,
+  onGetPDListSuccess,
 } = myChecklistSlice.actions;
 
 export const myChecklistReducer = myChecklistSlice.reducer;

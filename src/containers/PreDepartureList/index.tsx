@@ -8,25 +8,19 @@ import {
   View,
 } from 'react-native';
 import {SceneMap, TabView} from 'react-native-tab-view';
+import {useDispatch, useSelector} from 'react-redux';
 import Header from '../../components/AppHeader';
 import Icon from '../../components/Icon';
 import {ListProgress} from '../../components/ListProgress';
 import ListText from '../../components/ListText';
+
 import {COLORS} from '../../constants/colors';
-import PDListJson from './../../json/PDList.json';
-import {styles} from './styles';
-import ChecklistItem from '../../components/ChecklistItem';
-import MyListItem from '../../components/MyListItem';
-import PDListItem from '../../components/PDListItem';
-import {useDispatch, useSelector} from 'react-redux';
 import {
-  deleteItemFromPDList,
-  doneItemFromList,
   doneItemFromPDList,
-  onGetPDList,
   onGetPDListRequest,
 } from '../../store/reducers/mychecklistreducer';
-import {getPDList} from '../../sagas/myChecklistSaga';
+import {styles} from './styles';
+import PDListItem from '../../components/PDListItem';
 export function PreDepartureList() {
   const navigation = useNavigation();
   const [tab, setTab] = React.useState(0);
@@ -37,6 +31,10 @@ export function PreDepartureList() {
     navigation.goBack();
   };
 
+  let total = pdList[0].items.length;
+  let completed = pdList[0].items.filter(e => e.completed).length;
+  let progress = completed / total;
+  console.log('progress', progress);
   React.useEffect(() => {
     console.log('called');
     dispatch(onGetPDListRequest());
@@ -149,7 +147,7 @@ export function PreDepartureList() {
         onBackPress={goback}
         title={'Pre-Departure Documents List'}></Header>
       <View style={{paddingVertical: 20}}>
-        <ListProgress progress={0.7} />
+        <ListProgress progress={progress} />
       </View>
       <TabView
         // swipeEnabled={false}

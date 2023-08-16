@@ -1,10 +1,10 @@
 import * as React from 'react';
-import {TextInput, View} from 'react-native';
+import {View} from 'react-native';
+import {COLORS} from '../../constants/colors';
 import Icon from '../Icon';
 import ListText from '../ListText';
 import SwipableComponent from '../SwipableComponent';
 import {styles} from './styles';
-import {COLORS} from '../../constants/colors';
 
 const PDListItem = ({
   item,
@@ -65,7 +65,7 @@ const PDListItem = ({
                   numberOfLines={1}
                   style={[
                     styles.title,
-                    {color: item.completed ? '#AAAAAA' : null},
+                    {color: item.completed ? COLORS.MARLOW_GREY_600 : null},
                   ]}>
                   {item.title}
                 </ListText>
@@ -73,7 +73,12 @@ const PDListItem = ({
                   numberOfLines={1}
                   style={[
                     styles.title,
-                    {color: COLORS.MARLOW_GREY_700, marginTop: 5},
+                    {
+                      color: item.completed
+                        ? COLORS.MARLOW_GREY_600
+                        : COLORS.MARLOW_GREY_700,
+                      marginTop: 5,
+                    },
                   ]}>
                   {item.id}
                 </ListText>
@@ -81,7 +86,10 @@ const PDListItem = ({
               {item.optional ? (
                 <ListText
                   numberOfLines={1}
-                  style={[styles.title, {color: COLORS.MARLOW_GREY_700}]}>
+                  style={[
+                    styles.title,
+                    {color: item.completed ? COLORS.MARLOW_GREY_600 : null},
+                  ]}>
                   (Optional)
                 </ListText>
               ) : null}
@@ -97,13 +105,19 @@ const PDListItem = ({
               <View>
                 <ListText
                   numberOfLines={1}
-                  style={[styles.title, {color: COLORS.MARLOW_GREY_700}]}>
+                  style={[
+                    styles.title,
+                    {color: item.completed ? COLORS.MARLOW_GREY_600 : null},
+                  ]}>
                   Issue date: {item.issueDate || 'N/A'}
                 </ListText>
               </View>
               <ListText
                 numberOfLines={1}
-                style={[styles.title, {color: COLORS.MARLOW_GREY_700}]}>
+                style={[
+                  styles.title,
+                  {color: item.completed ? COLORS.MARLOW_GREY_600 : null},
+                ]}>
                 Exp. date: {item.expiryDate || 'N/A'}
               </ListText>
             </View>

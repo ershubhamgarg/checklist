@@ -6,7 +6,15 @@ import SwipableComponent from '../SwipableComponent';
 import {styles} from './styles';
 import {ChecklistItemProps} from './types';
 
-const MyListItem = ({item, index, input, text, onChange}) =>
+const MyListItem = ({
+  item,
+  index,
+  input,
+  text,
+  onChange,
+  onPressDelete,
+  onPressDone,
+}) =>
   // : ChecklistItemProps
   {
     const {title} = item;
@@ -41,9 +49,12 @@ const MyListItem = ({item, index, input, text, onChange}) =>
           <SwipableComponent
             deletee={true}
             done={true}
-            personal={item.personal}
+            personal={true}
             onPressDone={() => {
-              console.log(item);
+              onPressDone(item);
+            }}
+            onPressDelete={() => {
+              onPressDelete(item);
             }}
             setOpen={() => {}}>
             <View

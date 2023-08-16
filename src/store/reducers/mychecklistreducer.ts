@@ -1,6 +1,6 @@
-import {createSlice} from '@reduxjs/toolkit';
+import {createSlice, current} from '@reduxjs/toolkit';
 import {InitialState} from './type';
-import {saveItemToListHelper} from '../../helpers';
+import {deleteItemFromListHelper, saveItemToListHelper} from '../../helpers';
 
 const initialState: InitialState = {
   myList: [],
@@ -12,15 +12,23 @@ const myChecklistSlice = createSlice({
   name: 'myChecklistReducer',
   reducers: {
     addNewList: (state, action) => {
+      console.log('list while adding : ', state.myList);
       state.myList.push(action.payload);
     },
     saveItemToList: (state, action) => {
       state.myList = saveItemToListHelper(action.payload, state.myList);
-      console.log(action);
+    },
+    deleteItemFromList: (state, action) => {
+      let currentState = current(state);
+      state.myList = deleteItemFromListHelper(
+        action.payload,
+        currentState.myList,
+      );
     },
   },
 });
 
-export const {addNewList, saveItemToList} = myChecklistSlice.actions;
+export const {addNewList, saveItemToList, deleteItemFromList} =
+  myChecklistSlice.actions;
 
 export const myChecklistReducer = myChecklistSlice.reducer;

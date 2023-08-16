@@ -12,6 +12,7 @@ const SwipableComponent = ({
   submitted,
   onPressDone,
   personal,
+  onPressDelete,
 }) =>
   // : SwipableComponentProps
   {
@@ -29,6 +30,7 @@ const SwipableComponent = ({
               deletee={deletee}
               submitted={submitted}
               onPressDone={onPressDone}
+              onPressDelete={onPressDelete}
             />
           )}>
           {children}

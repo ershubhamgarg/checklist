@@ -12,8 +12,9 @@ export function SwipeActions({
   skip,
   submitted,
   personal,
-}) // : SwipeActionsProps
-{
+  onPressDelete,
+}) {
+  // : SwipeActionsProps
   const br = personal ? 0 : 7;
   return (
     <View
@@ -43,6 +44,7 @@ export function SwipeActions({
       ) : null}
       {deletee ? (
         <Pressable
+          onPress={onPressDelete}
           style={[
             styles.container,
             styles.delete,

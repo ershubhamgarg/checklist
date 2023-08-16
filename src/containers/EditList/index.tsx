@@ -1,16 +1,18 @@
 import {useNavigation} from '@react-navigation/native';
 import * as React from 'react';
-import {FlatList, Keyboard, Pressable, SafeAreaView, View} from 'react-native';
+import {FlatList, Pressable, SafeAreaView, View} from 'react-native';
 
 import {} from 'react-native-safe-area-context';
 import {useDispatch, useSelector} from 'react-redux';
 import Header from '../../components/AppHeader';
 import ListText from '../../components/ListText';
 import MyListItem from '../../components/MyListItem';
-import json from './../../json/myList.json';
+import {
+  deleteItemFromList,
+  saveItemToList,
+} from '../../store/reducers/mychecklistreducer';
 import {styles} from './styles';
-import {saveItemToList} from '../../store/reducers/mychecklistreducer';
-export function EditList(props) {
+export function EditList(props: any) {
   const {route} = props;
   const {params} = route;
   const {listData} = params;
@@ -20,17 +22,20 @@ export function EditList(props) {
 
   const [editing, setEditing] = React.useState(false);
   const [text, setText] = React.useState('');
-  const {myList} = useSelector(state => state.mychecklistreducer);
+  const {myList} = useSelector<any>(state => state.mychecklistreducer);
 
   const [data, setData] = React.useState([]);
 
   React.useEffect(() => {
     let arr = myList.filter((item: any) => item.listId === listData.listId)[0]
       .items;
+
+    console.log('Arr', arr);
     if (arr?.length) {
       setData(arr);
     } else {
-      onEdit();
+      setData([{input: true}]);
+      setEditing(true);
     }
   }, [listData, myList]);
 
@@ -42,6 +47,7 @@ export function EditList(props) {
     let editObj = {input: true};
     let arr = data ? data.slice() : [];
     arr.push(editObj);
+    console.log('here : , ', arr);
     setData(arr);
     setEditing(true);
   };
@@ -67,6 +73,14 @@ export function EditList(props) {
     setText(e);
   };
 
+  const onDone = e => {
+    console.log(e);
+  };
+
+  const onDelete = e => {
+    dispatch(deleteItemFromList(e));
+  };
+
   const renderItem = ({item, index}) =>
     item?.input ? (
       <MyListItem
@@ -82,6 +96,8 @@ export function EditList(props) {
         index={index}
         item={item}
         onCardPress={() => {}}
+        onPressDone={onDone}
+        onPressDelete={onDelete}
       />
     );
 
@@ -111,7 +127,7 @@ export function EditList(props) {
           </ListText>
         </View>
         <View style={{flex: 1}}>
-          <FlatList data={data} renderItem={renderItem} />
+          <FlatList extraData={data} data={data} renderItem={renderItem} />
         </View>
       </View>
     </SafeAreaView>

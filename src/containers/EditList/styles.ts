@@ -77,4 +77,10 @@ export const styles = StyleSheet.create({
     fontSize: 14,
     color: COLORS.WHITE,
   },
+  label: {
+    marginVertical: 12,
+    marginHorizontal: 20,
+    color: '#000',
+    fontSize: 14,
+  },
 });

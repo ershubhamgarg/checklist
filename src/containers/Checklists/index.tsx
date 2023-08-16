@@ -1,18 +1,19 @@
 import {useNavigation} from '@react-navigation/native';
 import * as React from 'react';
 import {FlatList, Pressable, SafeAreaView} from 'react-native';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import Header from '../../components/AppHeader';
 import ChecklistHeader from '../../components/ChecklistHeader';
 import ChecklistItem from '../../components/ChecklistItem';
 import Icon from '../../components/Icon';
 import {styles} from './styles';
 import {ChecklistItemProps} from './type';
+import {deleteList} from '../../store/reducers/mychecklistreducer';
 
 export const Checklists = () => {
   const navigation = useNavigation();
   const {navigate} = navigation;
-
+  const dispatch = useDispatch();
   const {myList} = useSelector(state => state.mychecklistreducer);
 
   const goback = () => {
@@ -31,6 +32,11 @@ export const Checklists = () => {
     navigate('AddList');
   };
 
+  const onPressDelete = e => {
+    console.log(e);
+    dispatch(deleteList(e));
+  };
+
   const _renderItem = ({item, index}) =>
     // : ChecklistItemProps
     {
@@ -38,7 +44,9 @@ export const Checklists = () => {
         <ChecklistItem
           item={item}
           index={index}
-          onCardPress={onListCardPress}
+          // onCardPress={onListCardPress}
+          onCardPress={() => {}}
+          onPressDelete={onPressDelete}
         />
       );
     };

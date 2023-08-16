@@ -9,6 +9,7 @@ import ListText from '../../components/ListText';
 import MyListItem from '../../components/MyListItem';
 import {
   deleteItemFromList,
+  doneItemFromList,
   saveItemToList,
 } from '../../store/reducers/mychecklistreducer';
 import {styles} from './styles';
@@ -47,7 +48,7 @@ export function EditList(props: any) {
     let editObj = {input: true};
     let arr = data ? data.slice() : [];
     arr.push(editObj);
-    console.log('here : , ', arr);
+
     setData(arr);
     setEditing(true);
   };
@@ -59,8 +60,9 @@ export function EditList(props: any) {
         listId: listData.listId,
         itemId: Date.now().toString(),
       };
-      console.log('new item : ', newItemObj);
+
       dispatch(saveItemToList(newItemObj));
+      setText('');
     } else {
       let arr = data;
       arr.pop();
@@ -74,20 +76,20 @@ export function EditList(props: any) {
   };
 
   const onDone = e => {
-    console.log(e);
+    dispatch(doneItemFromList(e));
   };
 
   const onDelete = e => {
     dispatch(deleteItemFromList(e));
   };
 
-  const renderItem = ({item, index}) =>
-    item?.input ? (
+  const renderItem = ({item, index}) => {
+    return item?.input ? (
       <MyListItem
         index={index}
         input={true}
         item={item}
-        onCardPress={() => {}}
+        // onCardPress={() => {}}
         onChange={onChange}
       />
     ) : (
@@ -95,17 +97,31 @@ export function EditList(props: any) {
         text={text}
         index={index}
         item={item}
-        onCardPress={() => {}}
+        // onCardPress={() => {}}
         onPressDone={onDone}
         onPressDelete={onDelete}
       />
     );
+  };
+
+  const renderList = ({}) => {
+    return null;
+  };
+
+  const onCancel = () => {
+    setEditing(false);
+  };
+
+  const showLabels =
+    data.filter(e => e.completed).length &&
+    data.filter(e => !e.completed).length;
 
   return (
-    <SafeAreaView
-      // blurRadius={1}
-      style={styles.container}>
-      <Header backLabel="Lists" onBackPress={onBack}>
+    <SafeAreaView style={styles.container}>
+      <Header
+        onCancelPress={onCancel}
+        backLabel={editing ? 'Cancel' : 'Lists'}
+        onBackPress={onBack}>
         {editing ? (
           <Pressable onPress={onSave} style={styles.done}>
             <ListText bold style={styles.doneText}>
@@ -126,8 +142,24 @@ export function EditList(props: any) {
             {listData.title}
           </ListText>
         </View>
-        <View style={{flex: 1}}>
-          <FlatList extraData={data} data={data} renderItem={renderItem} />
+        <View style={{}}>
+          {showLabels ? <ListText style={styles.label}>To-do</ListText> : null}
+          <FlatList
+            style={{backgroundColor: 'red'}}
+            extraData={data}
+            data={data.filter(e => !e.completed)}
+            renderItem={renderItem}
+          />
+          {showLabels ? (
+            <ListText style={[styles.label, {marginTop: 32}]}>
+              Completed tasks
+            </ListText>
+          ) : null}
+          <FlatList
+            extraData={data}
+            data={data.filter(e => e.completed)}
+            renderItem={renderItem}
+          />
         </View>
       </View>
     </SafeAreaView>

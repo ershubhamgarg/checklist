@@ -40,6 +40,13 @@ const Icon = ({name}) =>
         style={styles.next}
         tintColor={COLORS.WHITE}
       />
+    ) : name === 'uncheck' ? (
+      <Image
+        source={require('./../../assets/images/uncheck.png')}
+        resizeMode={'contain'}
+        style={styles.next}
+        tintColor={COLORS.WHITE}
+      />
     ) : name === 'skip' ? (
       <Image
         source={require('./../../assets/images/skip.png')}

@@ -11,6 +11,7 @@ const Header = ({
   onBackPress,
   backLabel,
   backButtonBackgroundStyle,
+  onCancelPress,
 }) =>
   // : AppHeaderProps
   {
@@ -21,7 +22,11 @@ const Header = ({
       <SafeAreaView style={styles.container}>
         <View style={styles.headerContainer}>
           <View style={[styles.backIconContainer, {flex: f1}]}>
-            <Pressable style={backButtonBackgroundStyle} onPress={onBackPress}>
+            <Pressable
+              style={backButtonBackgroundStyle}
+              onPress={() =>
+                backLabel == 'Cancel' ? onCancelPress() : onBackPress()
+              }>
               <Icon />
             </Pressable>
             {children ? (

@@ -17,8 +17,6 @@ const MyListItem = ({
 }) =>
   // : ChecklistItemProps
   {
-    const {title} = item;
-
     const onChangeText = e => {
       onChange(e);
     };
@@ -33,7 +31,7 @@ const MyListItem = ({
             <View style={{marginRight: 20}}>
               <Icon name={'item'} />
             </View>
-            <View style={styles.titleContainer}>
+            <View style={[styles.titleContainer]}>
               <TextInput
                 value={text}
                 onChangeText={onChangeText}
@@ -48,8 +46,8 @@ const MyListItem = ({
         <View style={styles.container}>
           <SwipableComponent
             deletee={true}
-            done={true}
-            personal={true}
+            done={!item.completed}
+            uncheck={item.completed}
             onPressDone={() => {
               onPressDone(item);
             }}
@@ -66,8 +64,13 @@ const MyListItem = ({
                 <Icon name={'item'} />
               </View>
               <View style={styles.titleContainer}>
-                <ListText numberOfLines={1} style={styles.title}>
-                  {title}
+                <ListText
+                  numberOfLines={1}
+                  style={[
+                    styles.title,
+                    {color: item.completed ? '#AAAAAA' : null},
+                  ]}>
+                  {item.title}
                 </ListText>
               </View>
             </View>

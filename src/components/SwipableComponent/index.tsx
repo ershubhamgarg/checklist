@@ -13,12 +13,25 @@ const SwipableComponent = ({
   onPressDone,
   personal,
   onPressDelete,
+  uncheck,
 }) =>
   // : SwipableComponentProps
   {
+    const swipe = React.useRef();
+
+    const onPressDoneCall = () => {
+      swipe?.current.close();
+      onPressDone();
+    };
+
+    const onPressDeleteCall = () => {
+      swipe?.current.close();
+      onPressDelete();
+    };
     return (
       <GestureHandlerRootView>
         <Swipeable
+          ref={swipe}
           overshootRight={false}
           onSwipeableWillOpen={() => setOpen(true)}
           onSwipeableWillClose={() => setOpen(false)}
@@ -29,8 +42,9 @@ const SwipableComponent = ({
               skip={skip}
               deletee={deletee}
               submitted={submitted}
-              onPressDone={onPressDone}
-              onPressDelete={onPressDelete}
+              onPressDone={onPressDoneCall}
+              onPressDelete={onPressDeleteCall}
+              uncheck={uncheck}
             />
           )}>
           {children}

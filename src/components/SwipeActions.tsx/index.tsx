@@ -13,8 +13,8 @@ export function SwipeActions({
   submitted,
   personal,
   onPressDelete,
+  uncheck,
 }) {
-  // : SwipeActionsProps
   const br = personal ? 0 : 7;
   return (
     <View
@@ -28,6 +28,14 @@ export function SwipeActions({
           style={[styles.container, styles.done]}>
           <Icon name={'done'} />
           <ListText style={styles.txt}>Done</ListText>
+        </Pressable>
+      ) : null}
+      {uncheck ? (
+        <Pressable
+          onPress={onPressDone}
+          style={[styles.container, styles.done]}>
+          <Icon name={'uncheck'} />
+          <ListText style={styles.txt}>Uncheck</ListText>
         </Pressable>
       ) : null}
       {skip ? (

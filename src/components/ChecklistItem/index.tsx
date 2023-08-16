@@ -6,11 +6,18 @@ import SwipableComponent from '../SwipableComponent';
 import {styles} from './styles';
 import {ChecklistItemProps} from './types';
 
-const ChecklistItem = ({item, index, onCardPress}: ChecklistItemProps) => {
+const ChecklistItem = ({
+  item,
+  index,
+  onCardPress,
+  onPressDelete,
+}: ChecklistItemProps) => {
   const [isOpen, setOpen] = React.useState(false);
   const {title, createdOn, lastItem, items} = item;
+
   const br = isOpen ? 0 : 7;
   let LastItem = items?.length ? items[items?.length - 1].title : 'None';
+
   return (
     <View style={styles.container}>
       {!index && ( // for rendering on first index
@@ -24,6 +31,7 @@ const ChecklistItem = ({item, index, onCardPress}: ChecklistItemProps) => {
         </View>
       )}
       <SwipableComponent
+        onPressDelete={() => onPressDelete(item)}
         deletee={item.personal}
         done={item.mandatory || item.optional}
         skip={item.optional}

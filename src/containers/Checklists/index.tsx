@@ -44,8 +44,8 @@ export const Checklists = () => {
         <ChecklistItem
           item={item}
           index={index}
-          // onCardPress={onListCardPress}
-          onCardPress={() => {}}
+          onCardPress={onListCardPress}
+          // onCardPress={() => {}}
           onPressDelete={onPressDelete}
         />
       );

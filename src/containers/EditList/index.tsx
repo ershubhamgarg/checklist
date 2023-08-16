@@ -1,6 +1,12 @@
 import {useNavigation} from '@react-navigation/native';
 import * as React from 'react';
-import {FlatList, Pressable, SafeAreaView, View} from 'react-native';
+import {
+  FlatList,
+  Pressable,
+  SafeAreaView,
+  View,
+  ScrollView,
+} from 'react-native';
 
 import {} from 'react-native-safe-area-context';
 import {useDispatch, useSelector} from 'react-redux';
@@ -142,25 +148,26 @@ export function EditList(props: any) {
             {listData.title}
           </ListText>
         </View>
-        <View style={{}}>
+        <ScrollView style={{flex: 1}}>
           {showLabels ? <ListText style={styles.label}>To-do</ListText> : null}
           <FlatList
-            style={{backgroundColor: 'red'}}
             extraData={data}
             data={data.filter(e => !e.completed)}
             renderItem={renderItem}
           />
-          {showLabels ? (
+          {showLabels && !editing ? (
             <ListText style={[styles.label, {marginTop: 32}]}>
               Completed tasks
             </ListText>
           ) : null}
-          <FlatList
-            extraData={data}
-            data={data.filter(e => e.completed)}
-            renderItem={renderItem}
-          />
-        </View>
+          {!editing && (
+            <FlatList
+              extraData={data}
+              data={data.filter(e => e.completed)}
+              renderItem={renderItem}
+            />
+          )}
+        </ScrollView>
       </View>
     </SafeAreaView>
   );

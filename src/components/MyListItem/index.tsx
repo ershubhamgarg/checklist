@@ -45,9 +45,10 @@ const MyListItem = ({
       return (
         <View style={styles.container}>
           <SwipableComponent
-            deletee={true}
+            deletee={!item.completed}
             done={!item.completed}
             uncheck={item.completed}
+            personal
             onPressDone={() => {
               onPressDone(item);
             }}

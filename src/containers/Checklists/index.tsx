@@ -17,7 +17,7 @@ import {usePDListProgress} from '../../utils';
 import {ChecklistStackParamList} from '../../navigation/type';
 
 export const Checklists = () => {
-  const navigation = useNavigation<NavigationProp<ChecklistStackParamList>>();
+  const navigation = useNavigation();
   const {navigate} = navigation;
   const dispatch = useDispatch();
   const {myList, pdListLoading} = useSelector(

@@ -12,6 +12,7 @@ export const styles = StyleSheet.create({
     paddingVertical: 15,
     borderRadius: 5,
     shadowOpacity: 0.2,
+    backgroundColor: 'yellow',
   },
   txt: {
     fontSize: 15,
@@ -30,7 +31,7 @@ export const styles = StyleSheet.create({
     width: '90%',
     flexDirection: 'row',
     justifyContent: 'space-between',
-
+    alignItems: 'center',
     backgroundColor: COLORS.WHITE,
     paddingVertical: 30,
     paddingRight: 30,
@@ -43,12 +44,13 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   input: {
-    height: 20,
+    height: 40,
     fontFamily: FONT.ROBOTO_REGULAR,
     fontSize: 16,
     paddingLeft: 20,
 
     width: '90%',
+    color: 'black',
   },
   done: {
     backgroundColor: COLORS.MARLOW_BUTTON_BLUE,

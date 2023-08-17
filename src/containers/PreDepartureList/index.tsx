@@ -175,7 +175,7 @@ export function PreDepartureList() {
         <ListProgress progress={progress} />
       </View>
       <TabView
-        // swipeEnabled={false}
+        swipeEnabled={false}
         navigationState={{
           index: tab,
           routes: pdList,

@@ -1,7 +1,7 @@
 import {BlurView} from '@react-native-community/blur';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 import * as React from 'react';
-import {Pressable, TextInput, View} from 'react-native';
+import {Platform, Pressable, TextInput, View} from 'react-native';
 import {useDispatch} from 'react-redux';
 import Header from '../../components/AppHeader';
 import Icon from '../../components/Icon';
@@ -37,8 +37,10 @@ export function AddList() {
     dispatch(addNewList(newListObj));
     navigation.replace('EditList', {listData: newListObj});
   };
+
+  const Wrap = Platform.OS === 'android' ? View : BlurView;
   return (
-    <BlurView
+    <Wrap
       blurAmount={0.2}
       reducedTransparencyFallbackColor="white"
       // blurRadius={1}
@@ -70,6 +72,6 @@ export function AddList() {
           )}
         </View>
       </View>
-    </BlurView>
+    </Wrap>
   );
 }

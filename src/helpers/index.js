@@ -1,11 +1,13 @@
+import moment from 'moment';
+
 export const deleteListHelper = (payload, myList) => {
-  return myList.filter(e => e.listId != payload.listId);
+  return myList.filter(e => e.listId !== payload.listId);
 };
 
 export const saveItemToListHelper = (payload, myList) => {
   let listId = payload.listId;
   myList.map((list, index) => {
-    if (list.listId == listId) {
+    if (list.listId === listId) {
       return {...list, items: list.items.push(payload)};
     } else {
       return list;
@@ -15,7 +17,6 @@ export const saveItemToListHelper = (payload, myList) => {
 };
 
 export const deleteItemFromListHelper = (payload, myList) => {
-  console.log('PD list', myList);
   return myList.map((list, index) => {
     if (list.listId === payload.listId) {
       let newListItems = list.items.filter(e => e.itemId !== payload.itemId);
@@ -27,11 +28,10 @@ export const deleteItemFromListHelper = (payload, myList) => {
 };
 
 export const checkUncheckItemHelper = (payload, myList) => {
-  console.log('PD list', myList);
   return myList.map((list, index) => {
     if (list.listId === payload.listId) {
       let newListItems = list.items.map(e => {
-        if (e.itemId == payload.itemId) {
+        if (e.itemId === payload.itemId) {
           return {...e, completed: !e.completed};
         } else {
           return e;
@@ -42,4 +42,10 @@ export const checkUncheckItemHelper = (payload, myList) => {
       return list;
     }
   });
+};
+
+export const formatDate = e => {
+  let day = moment(e).format('DD.MM.YY');
+
+  return day;
 };

@@ -5,6 +5,7 @@ import ListText from '../ListText';
 import SwipableComponent from '../SwipableComponent';
 import {styles} from './styles';
 import {ChecklistItemProps} from './types';
+import {formatDate} from '../../helpers';
 
 const ChecklistItem = ({
   item,
@@ -48,7 +49,7 @@ const ChecklistItem = ({
               {title}
             </ListText>
             <ListText style={styles.date}>
-              {'Date created: ' + createdOn}
+              {'Date created: ' + formatDate(createdOn)}
             </ListText>
             <ListText style={styles.last}>
               {'Last item added: ' + LastItem}

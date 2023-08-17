@@ -11,4 +11,5 @@ export const styles = StyleSheet.create({
   txt: {
     fontSize: 15,
   },
+  label: {fontSize: 14, margin: 20},
 });

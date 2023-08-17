@@ -32,7 +32,7 @@ export function AddList() {
       createdOn: Date.now(),
       items: [],
     };
-    console.log('new list to be added : ', newListObj);
+
     dispatch(addNewList(newListObj));
     navigation.replace('EditList', {listData: newListObj});
   };

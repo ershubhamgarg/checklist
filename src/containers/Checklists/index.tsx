@@ -32,7 +32,6 @@ export const Checklists = () => {
   };
 
   const onPressDelete = e => {
-    console.log(e);
     dispatch(deleteList(e));
   };
 

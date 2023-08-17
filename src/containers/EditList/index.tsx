@@ -116,9 +116,10 @@ export function EditList(props: any) {
     data.pop();
   };
 
-  const showLabels =
-    data.filter(e => e.completed).length &&
-    data.filter(e => !e.completed).length;
+  let todo = data.filter(e => !e.completed);
+  let completed = data.filter(e => e.completed);
+
+  const showLabels = todo.length && completed.length;
 
   return (
     <SafeAreaView style={styles.container}>
@@ -148,23 +149,15 @@ export function EditList(props: any) {
         </View>
         <ScrollView style={{flex: 1}}>
           {showLabels ? <ListText style={styles.label}>To-do</ListText> : null}
-          <FlatList
-            extraData={data}
-            data={data.filter(e => !e.completed)}
-            renderItem={renderItem}
-          />
+          {todo.map((item, index) => renderItem({item, index}))}
           {showLabels && !editing ? (
             <ListText style={[styles.label, {marginTop: 32}]}>
               Completed tasks
             </ListText>
           ) : null}
-          {!editing && (
-            <FlatList
-              extraData={data}
-              data={data.filter(e => e.completed)}
-              renderItem={renderItem}
-            />
-          )}
+          {!editing
+            ? completed.map((item, index) => renderItem({item, index}))
+            : null}
         </ScrollView>
       </View>
     </SafeAreaView>

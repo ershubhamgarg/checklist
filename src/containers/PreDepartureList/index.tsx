@@ -6,6 +6,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   View,
+  ScrollView,
 } from 'react-native';
 import {SceneMap, TabView} from 'react-native-tab-view';
 import {useDispatch, useSelector} from 'react-redux';
@@ -36,7 +37,7 @@ export function PreDepartureList() {
   let total = pdList[0].items.length;
   let completed = pdList[0].items.filter(e => e.completed).length;
   let progress = completed / total;
-  console.log('progress', progress);
+
   React.useEffect(() => {
     dispatch(onGetPDListRequest());
   }, []);
@@ -83,9 +84,12 @@ export function PreDepartureList() {
     };
 
   const FirstRoute = ({...e}) => {
-    console.log('roye : ', e.route.key, e.route.items);
+    let data = e.route.items;
+    let completed = data.filter(e => e.completed);
+    let pending = data.filter(e => !e.completed);
     return (
-      <View style={[styles2.container, {backgroundColor: COLORS.MARLOW_NAVY}]}>
+      <ScrollView
+        style={[styles2.container, {backgroundColor: COLORS.MARLOW_NAVY}]}>
         <View style={{padding: 25}}>
           <ListText italic style={{fontSize: 12}}>
             Items should only be ticked off once the corresponding original
@@ -93,12 +97,23 @@ export function PreDepartureList() {
             departure.
           </ListText>
         </View>
-        <FlatList renderItem={_renderItem} data={e.route.items} />
-      </View>
+        {pending.length ? (
+          <ListText bold style={styles.label}>
+            Pending
+          </ListText>
+        ) : null}
+        {pending.map((item, index) => _renderItem({item, index}))}
+
+        {completed.length ? (
+          <ListText bold style={styles.label}>
+            Completed
+          </ListText>
+        ) : null}
+        {completed.map((item, index) => _renderItem({item, index}))}
+      </ScrollView>
     );
   };
   const SecondRoute = e => {
-    console.log('roye : ', e);
     return (
       <View
         style={[styles2.container, {backgroundColor: COLORS.MARLOW_NAVY}]}

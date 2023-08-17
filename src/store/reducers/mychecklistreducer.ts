@@ -5,6 +5,7 @@ import {
   deleteItemFromListHelper,
   deleteListHelper,
   saveItemToListHelper,
+  skipItemHelper,
 } from '../../helpers';
 // import PDListJson from './../../json/PDList.json';
 const initialState = {
@@ -42,7 +43,21 @@ const myChecklistSlice = createSlice({
         currentState.myList,
       );
     },
-    onGetPDListRequest: (state, action) => {
+    submitItemFromPDList: (state, action) => {
+      let currentState = current(state);
+      state.pdList = checkUncheckItemHelper(
+        action.payload,
+        currentState.pdList,
+      );
+    },
+    skipItemFromPDList: (state, action) => {
+      let currentState = current(state);
+      state.pdList = checkUncheckItemHelper(
+        action.payload,
+        currentState.pdList,
+      );
+    },
+    onGetPDListRequest: state => {
       state.pdListLoading = true;
     },
     onGetPDListSuccess: (state, action) => {
@@ -67,6 +82,8 @@ export const {
   doneItemFromPDList,
   onGetPDListRequest,
   onGetPDListSuccess,
+  submitItemFromPDList,
+  skipItemFromPDList,
 } = myChecklistSlice.actions;
 
 export const myChecklistReducer = myChecklistSlice.reducer;

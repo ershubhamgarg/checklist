@@ -14,6 +14,8 @@ export function SwipeActions({
   personal,
   onPressDelete,
   uncheck,
+  onPressSubmitted,
+  onPressSkipped,
 }) {
   const br = personal ? 0 : 7;
   return (
@@ -39,13 +41,17 @@ export function SwipeActions({
         </Pressable>
       ) : null}
       {skip ? (
-        <Pressable style={[styles.container, styles.skip]}>
+        <Pressable
+          onPress={onPressSkipped}
+          style={[styles.container, styles.skip]}>
           <Icon name={'skip'} />
           <ListText style={styles.txt}>Skip</ListText>
         </Pressable>
       ) : null}
       {submitted ? (
-        <Pressable style={[styles.container, styles.submitted]}>
+        <Pressable
+          onPress={onPressSubmitted}
+          style={[styles.container, styles.submitted]}>
           <Icon name={'done'} />
           <ListText style={styles.txt}>Submitted</ListText>
         </Pressable>

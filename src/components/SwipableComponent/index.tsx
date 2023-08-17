@@ -14,6 +14,8 @@ const SwipableComponent = ({
   personal,
   onPressDelete,
   uncheck,
+  onPressSubmitted,
+  onPressSkipped,
 }) =>
   // : SwipableComponentProps
   {
@@ -45,6 +47,8 @@ const SwipableComponent = ({
               onPressDone={onPressDoneCall}
               onPressDelete={onPressDeleteCall}
               uncheck={uncheck}
+              onPressSubmitted={onPressSubmitted}
+              onPressSkipped={onPressSkipped}
             />
           )}>
           {children}

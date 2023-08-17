@@ -9,10 +9,9 @@ import {styles} from './styles';
 const PDListItem = ({
   item,
   index,
-  input,
-  text,
-  onChange,
-  onPressDelete,
+
+  onPressSubmitted,
+  onPressSkipped,
   onPressDone,
 }) => {
   return (
@@ -20,14 +19,17 @@ const PDListItem = ({
       <SwipableComponent
         done={!item.completed && !item.attention}
         uncheck={item.completed}
-        skip={item.optional}
-        submitted={item.attention}
+        skip={item.optional && !item.completed}
+        submitted={item.attention && !item.completed}
         personal
         onPressDone={() => {
           onPressDone(item);
         }}
-        onPressDelete={() => {
-          onPressDelete(item);
+        onPressSubmitted={() => {
+          onPressSubmitted(item);
+        }}
+        onPressSkipped={() => {
+          onPressSkipped(item);
         }}
         setOpen={() => {}}>
         <View
@@ -43,9 +45,9 @@ const PDListItem = ({
             }}>
             {item.attention ? (
               <Icon name={'attention-big'} />
-            ) : item.completed ? (
+            ) : item.completed && !item.optional ? (
               <Icon name={'completed'} />
-            ) : item.skipped ? (
+            ) : item.completed && item.optional ? (
               <Icon name={'skipped'} />
             ) : (
               <Icon name={'item'} />

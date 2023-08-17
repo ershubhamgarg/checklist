@@ -43,3 +43,21 @@ export const checkUncheckItemHelper = (payload, myList) => {
     }
   });
 };
+
+//skipItemHelper
+export const skipItemHelper = (payload, myList) => {
+  return myList.map((list, index) => {
+    if (list.listId === payload.listId) {
+      let newListItems = list.items.map(e => {
+        if (e.itemId == payload.itemId) {
+          return {...e, skipped: !e.skipped};
+        } else {
+          return e;
+        }
+      });
+      return {...list, items: newListItems};
+    } else {
+      return list;
+    }
+  });
+};

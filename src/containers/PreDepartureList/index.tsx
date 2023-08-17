@@ -18,6 +18,8 @@ import {COLORS} from '../../constants/colors';
 import {
   doneItemFromPDList,
   onGetPDListRequest,
+  skipItemFromPDList,
+  submitItemFromPDList,
 } from '../../store/reducers/mychecklistreducer';
 import {styles} from './styles';
 import PDListItem from '../../components/PDListItem';
@@ -36,7 +38,6 @@ export function PreDepartureList() {
   let progress = completed / total;
   console.log('progress', progress);
   React.useEffect(() => {
-    console.log('called');
     dispatch(onGetPDListRequest());
   }, []);
 
@@ -51,6 +52,19 @@ export function PreDepartureList() {
     dispatch(doneItemFromPDList(obj));
   };
 
+  const onPressSubmitted = e => {
+    let listId = pdList[tab].key;
+    let obj = {...e, listId: listId};
+
+    dispatch(submitItemFromPDList(obj));
+  };
+  const onPressSkipped = e => {
+    let listId = pdList[tab].key;
+    let obj = {...e, listId: listId};
+
+    dispatch(skipItemFromPDList(obj));
+  };
+
   const _renderItem = ({item, index}) =>
     // : ChecklistItemProps
     {
@@ -59,6 +73,8 @@ export function PreDepartureList() {
           item={item}
           index={index}
           onPressDone={onPressDone}
+          onPressSubmitted={onPressSubmitted}
+          onPressSkipped={onPressSkipped}
           // onCardPress={onListCardPress}
           // onCardPress={() => {}}
           // onPressDelete={onPressDelete}

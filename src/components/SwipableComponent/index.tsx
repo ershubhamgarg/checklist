@@ -18,15 +18,15 @@ const SwipableComponent = ({
   onPressSubmitted = () => {},
   onPressSkipped = () => {},
 }: SwipableComponentProps) => {
-  const swipe = React.useRef();
+  const swipe = React.useRef<Swipeable>();
 
   const onPressDoneCall = () => {
-    swipe?.current.close();
+    swipe.current?.close();
     onPressDone();
   };
 
   const onPressDeleteCall = () => {
-    swipe?.current.close();
+    swipe.current?.close();
     onPressDelete();
   };
   return (

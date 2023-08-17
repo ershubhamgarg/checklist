@@ -1,7 +1,7 @@
 export type PDlistItemProps = {
   item: any;
   index: number;
-  onPressSubmitted?: () => void;
-  onPressSkipped?: () => void;
-  onPressDone?: () => void;
+  onPressSubmitted?: (e: any) => void;
+  onPressSkipped?: (e: any) => void;
+  onPressDone?: (e: any) => void;
 };

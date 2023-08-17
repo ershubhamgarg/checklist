@@ -37,7 +37,6 @@ export function EditList(props: EditListProps) {
     let arr = myList.filter((item: any) => item.listId === listData.listId)[0]
       .items;
 
-    console.log('Arr', arr);
     if (arr?.length) {
       setData(arr);
     } else {
@@ -93,9 +92,16 @@ export function EditList(props: EditListProps) {
 
   const renderItem = ({item, index}: {item: any; index: number}) => {
     return item?.input ? (
-      <MyListItem index={index} input={true} item={item} onChange={onChange} />
+      <MyListItem
+        key={'input'}
+        index={index}
+        input={true}
+        item={item}
+        onChange={onChange}
+      />
     ) : (
       <MyListItem
+        key={item.itemId}
         text={text}
         index={index}
         item={item}

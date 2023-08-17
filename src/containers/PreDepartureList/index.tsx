@@ -67,6 +67,7 @@ export function PreDepartureList() {
     {
       return (
         <PDListItem
+          key={index}
           item={item}
           index={index}
           onPressDone={onPressDone}

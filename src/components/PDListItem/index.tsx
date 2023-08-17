@@ -10,9 +10,9 @@ import {PDlistItemProps} from './types';
 const PDListItem = ({
   item,
   index,
-  onPressSubmitted,
-  onPressSkipped,
-  onPressDone,
+  onPressSubmitted = () => {},
+  onPressSkipped = () => {},
+  onPressDone = () => {},
 }: PDlistItemProps) => {
   return (
     <View style={styles.container}>

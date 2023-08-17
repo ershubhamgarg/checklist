@@ -16,7 +16,10 @@ const persistedReducer = persistReducer(persistConfig, appReducer);
 
 export const store = configureStore({
   reducer: persistedReducer,
-  middleware: [sagaMiddleware, logger],
+  middleware: [
+    sagaMiddleware,
+    // logger
+  ],
 });
 
 export type RootState = ReturnType<typeof store.getState>;

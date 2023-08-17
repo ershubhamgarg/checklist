@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import {COLORS} from '../../constants/colors';
 
 export const styles = StyleSheet.create({
   next: {height: 20, width: 20},
@@ -11,6 +12,7 @@ export const styles = StyleSheet.create({
     shadowColor: '#0000000F',
     shadowOffset: {width: 1, height: 1},
     shadowOpacity: 1,
+    backgroundColor: COLORS.MARLOW_NAVY,
   },
   attention: {height: 12, width: 12, marginRight: 5},
   attentionBig: {height: 20, width: 20, marginRight: 5},

@@ -6,7 +6,7 @@ import {
 } from '../store/reducers/mychecklistreducer';
 
 function* getPDList() {
-  yield delay(5000); // response will come after 5 secs
+  yield delay(2000); // response will come after 2 secs
   yield put(onGetPDListSuccess(PDListJson));
 }
 

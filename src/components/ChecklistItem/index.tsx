@@ -42,7 +42,7 @@ const ChecklistItem = ({
         }}
         setOpen={setOpen}>
         <Pressable
-          onPressOut={() => onCardPress(item)}
+          onPress={() => onCardPress(item)}
           style={[styles.headerContainer, {borderRadius: br}]}>
           <View style={styles.titleContainer}>
             <ListText numberOfLines={1} style={styles.title}>

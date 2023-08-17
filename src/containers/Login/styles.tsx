@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import {COLORS} from '../../constants/colors';
 
 export const styles = StyleSheet.create({
   container: {
@@ -8,15 +9,16 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   btnContainer: {
-    paddingVertical: 15,
-    borderRadius: 5,
-
+    borderRadius: 25,
+    height: 50,
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 1,
+    borderWidth: 2,
+    borderColor: COLORS.MARLOW_BLUE,
   },
   txt: {
     fontSize: 15,
+    color: COLORS.MARLOW_BLUE,
   },
   image: {
     height: 300,

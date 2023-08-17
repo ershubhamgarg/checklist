@@ -23,6 +23,7 @@ import {
   submitItemFromPDList,
 } from '../../store/reducers/mychecklistreducer';
 import {styles} from './styles';
+import {usePDListProgress} from '../../utils';
 export function PreDepartureList() {
   const navigation = useNavigation();
   const [tab, setTab] = React.useState(0);
@@ -33,9 +34,7 @@ export function PreDepartureList() {
     navigation.goBack();
   };
 
-  let total = pdList[0].items.length;
-  let completed = pdList[0].items.filter(e => e.completed).length;
-  let progress = completed / total;
+  const [progress] = usePDListProgress();
 
   const _handleIndexChange = e => {
     setTab(e);
@@ -77,7 +76,7 @@ export function PreDepartureList() {
 
   const FirstRoute = ({...e}) => {
     let data = e.route.items;
-    let completed = data.filter(e => e.completed);
+    let completed = data.filter(e => e.completed || e.skipped);
     let pending = data.filter(e => !e.completed);
     return (
       <ScrollView

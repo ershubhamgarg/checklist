@@ -14,6 +14,7 @@ import {styles} from './styles';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootState} from '../../store';
 import {ChecklistItemProps} from './type';
+import {usePDListProgress} from '../../utils';
 
 export const Checklists = () => {
   const navigation = useNavigation<NativeStackNavigationProp>();
@@ -22,7 +23,7 @@ export const Checklists = () => {
   const {myList, pdListLoading} = useSelector(
     (state: RootState) => state.mychecklistreducer,
   );
-
+  const [progress] = usePDListProgress();
   const goback = () => {
     navigation.goBack();
   };
@@ -65,7 +66,9 @@ export const Checklists = () => {
     };
 
   const _listHeader = () => {
-    return <ChecklistHeader onCardPress={onHeaderCardPress} />;
+    return (
+      <ChecklistHeader progress={progress} onCardPress={onHeaderCardPress} />
+    );
   };
   return (
     <SafeAreaView style={styles.container}>

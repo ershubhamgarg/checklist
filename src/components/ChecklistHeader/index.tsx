@@ -7,7 +7,7 @@ import ListText from '../ListText';
 import {styles} from './styles';
 import {ChecklistHeaderProps} from './types';
 
-const ChecklistHeader = ({onCardPress}: ChecklistHeaderProps) => {
+const ChecklistHeader = ({onCardPress, progress}: ChecklistHeaderProps) => {
   return (
     <View style={styles.container}>
       <ListText medium style={styles.headerTitle}>
@@ -19,14 +19,14 @@ const ChecklistHeader = ({onCardPress}: ChecklistHeaderProps) => {
       <Pressable onPress={onCardPress} style={styles.headerContainer}>
         <View style={styles.progressContainer}>
           <ProgressCircle
-            percent={60}
+            percent={progress * 100}
             radius={22}
             borderWidth={4}
             color={COLORS.MARLOW_BLUE}
             shadowColor={COLORS.WHITE}
             bgColor={COLORS.WHITE}>
             <ListText bold style={styles.percentText}>
-              {'60%'}
+              {progress * 100 + '%'}
             </ListText>
           </ProgressCircle>
         </View>

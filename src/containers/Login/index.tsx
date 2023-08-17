@@ -1,6 +1,12 @@
 import {useNavigation} from '@react-navigation/native';
 import * as React from 'react';
-import {Pressable, SafeAreaView, Image, View} from 'react-native';
+import {
+  Pressable,
+  SafeAreaView,
+  Image,
+  View,
+  TouchableOpacity,
+} from 'react-native';
 import {styles} from './styles';
 import ListText from '../../components/ListText';
 
@@ -17,11 +23,14 @@ export function Login() {
           source={require('./../../assets/images/mn.jpeg')}
           resizeMode="contain"
         />
-        <Pressable style={styles.btnContainer} onPress={onLoginPress}>
+        <TouchableOpacity
+          activeOpacity={0.5}
+          style={styles.btnContainer}
+          onPress={onLoginPress}>
           <ListText medium style={styles.txt}>
-            Login to Marlow checklist
+            Go to checklist
           </ListText>
-        </Pressable>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );

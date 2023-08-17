@@ -4,4 +4,9 @@ export type SwipeActionsProps = {
   onPressDone?: () => void;
   skip?: boolean;
   submitted?: boolean;
+  personal?: boolean;
+  onPressDelete?: () => void;
+  uncheck?: boolean;
+  onPressSubmitted?: () => void;
+  onPressSkipped?: () => void;
 };

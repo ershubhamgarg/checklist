@@ -3,10 +3,10 @@ import * as React from 'react';
 import {
   FlatList,
   SafeAreaView,
+  ScrollView,
   StyleSheet,
   TouchableOpacity,
   View,
-  ScrollView,
 } from 'react-native';
 import {SceneMap, TabView} from 'react-native-tab-view';
 import {useDispatch, useSelector} from 'react-redux';
@@ -15,15 +15,14 @@ import Icon from '../../components/Icon';
 import {ListProgress} from '../../components/ListProgress';
 import ListText from '../../components/ListText';
 
+import PDListItem from '../../components/PDListItem';
 import {COLORS} from '../../constants/colors';
 import {
   doneItemFromPDList,
-  onGetPDListRequest,
   skipItemFromPDList,
   submitItemFromPDList,
 } from '../../store/reducers/mychecklistreducer';
 import {styles} from './styles';
-import PDListItem from '../../components/PDListItem';
 export function PreDepartureList() {
   const navigation = useNavigation();
   const [tab, setTab] = React.useState(0);
@@ -72,9 +71,6 @@ export function PreDepartureList() {
           onPressDone={onPressDone}
           onPressSubmitted={onPressSubmitted}
           onPressSkipped={onPressSkipped}
-          // onCardPress={onListCardPress}
-          // onCardPress={() => {}}
-          // onPressDelete={onPressDelete}
         />
       );
     };

@@ -1,12 +1,6 @@
 import {useNavigation} from '@react-navigation/native';
 import * as React from 'react';
-import {
-  FlatList,
-  Pressable,
-  SafeAreaView,
-  ScrollView,
-  View,
-} from 'react-native';
+import {Pressable, SafeAreaView, ScrollView, View} from 'react-native';
 
 import {} from 'react-native-safe-area-context';
 import {useDispatch, useSelector} from 'react-redux';
@@ -92,19 +86,12 @@ export function EditList(props: any) {
 
   const renderItem = ({item, index}) => {
     return item?.input ? (
-      <MyListItem
-        index={index}
-        input={true}
-        item={item}
-        // onCardPress={() => {}}
-        onChange={onChange}
-      />
+      <MyListItem index={index} input={true} item={item} onChange={onChange} />
     ) : (
       <MyListItem
         text={text}
         index={index}
         item={item}
-        // onCardPress={() => {}}
         onPressDone={onDone}
         onPressDelete={onDelete}
       />

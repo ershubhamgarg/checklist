@@ -3,6 +3,7 @@ import {Pressable, View} from 'react-native';
 import Icon from '../Icon';
 import ListText from '../ListText';
 import {styles} from './styles';
+import {SwipeActionsProps} from './types';
 
 export function SwipeActions({
   deletee,
@@ -15,7 +16,7 @@ export function SwipeActions({
   uncheck,
   onPressSubmitted,
   onPressSkipped,
-}) {
+}: SwipeActionsProps) {
   const br = personal ? 0 : 7;
   return (
     <View

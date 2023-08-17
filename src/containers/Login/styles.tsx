@@ -8,13 +8,20 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   btnContainer: {
-    paddingHorizontal: 50,
     paddingVertical: 15,
-    backgroundColor: '#cdcdcd',
     borderRadius: 5,
-    shadowOpacity: 0.2,
+
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
   },
   txt: {
     fontSize: 15,
+  },
+  image: {
+    height: 300,
+    width: 300,
+
+    alignSelf: 'center',
   },
 });

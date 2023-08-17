@@ -1,4 +1,4 @@
-import {NativeSyntheticEvent, NativeTouchEvent, ViewStyle} from 'react-native';
+import {ViewStyle} from 'react-native';
 
 export type AppHeaderProps = {
   title?: string;

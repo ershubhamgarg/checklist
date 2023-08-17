@@ -1,1 +1,7 @@
-export type ChecklistItemProps = {item: any; index: number};
+export type PDlistItemProps = {
+  item: any;
+  index: number;
+  onPressSubmitted?: () => void;
+  onPressSkipped?: () => void;
+  onPressDone?: () => void;
+};

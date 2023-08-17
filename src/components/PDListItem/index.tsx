@@ -5,15 +5,15 @@ import Icon from '../Icon';
 import ListText from '../ListText';
 import SwipableComponent from '../SwipableComponent';
 import {styles} from './styles';
+import {PDlistItemProps} from './types';
 
 const PDListItem = ({
   item,
   index,
-
   onPressSubmitted,
   onPressSkipped,
   onPressDone,
-}) => {
+}: PDlistItemProps) => {
   return (
     <View style={styles.container}>
       <SwipableComponent

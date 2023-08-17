@@ -8,7 +8,6 @@ export const styles = StyleSheet.create({
   headerContainer: {
     height: 90,
     flexDirection: 'row',
-    // alignItems: 'center',
     justifyContent: 'space-between',
 
     paddingHorizontal: 20,

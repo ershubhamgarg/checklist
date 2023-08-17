@@ -1,4 +1,4 @@
-import {useNavigation} from '@react-navigation/native';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
 import * as React from 'react';
 import {Pressable, SafeAreaView, ScrollView, View} from 'react-native';
 
@@ -13,17 +13,23 @@ import {
   saveItemToList,
 } from '../../store/reducers/mychecklistreducer';
 import {styles} from './styles';
-export function EditList(props: any) {
+import {ChecklistStackParamList} from '../../navigation/type';
+import {RootState} from '../../store';
+import {EditListProps} from './type';
+
+export function EditList(props: EditListProps) {
   const {route} = props;
   const {params} = route;
   const {listData} = params;
 
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProp<ChecklistStackParamList>>();
   const dispatch = useDispatch();
 
   const [editing, setEditing] = React.useState(false);
   const [text, setText] = React.useState('');
-  const {myList} = useSelector<any>(state => state.mychecklistreducer);
+  const {myList} = useSelector<RootState, any>(
+    state => state.mychecklistreducer,
+  );
 
   const [data, setData] = React.useState([]);
 
@@ -35,7 +41,8 @@ export function EditList(props: any) {
     if (arr?.length) {
       setData(arr);
     } else {
-      setData([{input: true}]);
+      let arr = [{input: true}];
+      setData(arr);
       setEditing(true);
     }
   }, [listData, myList]);
@@ -72,19 +79,19 @@ export function EditList(props: any) {
     setEditing(false);
   };
 
-  const onChange = e => {
+  const onChange = (e: any) => {
     setText(e);
   };
 
-  const onDone = e => {
+  const onDone = (e: any) => {
     dispatch(doneItemFromList(e));
   };
 
-  const onDelete = e => {
+  const onDelete = (e: any) => {
     dispatch(deleteItemFromList(e));
   };
 
-  const renderItem = ({item, index}) => {
+  const renderItem = ({item, index}: {item: any; index: number}) => {
     return item?.input ? (
       <MyListItem index={index} input={true} item={item} onChange={onChange} />
     ) : (

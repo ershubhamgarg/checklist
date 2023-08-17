@@ -4,7 +4,6 @@ import {
   FlatList,
   SafeAreaView,
   ScrollView,
-  StyleSheet,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -22,13 +21,16 @@ import {
   skipItemFromPDList,
   submitItemFromPDList,
 } from '../../store/reducers/mychecklistreducer';
-import {styles} from './styles';
 import {usePDListProgress} from '../../utils';
+import {styles, styles2} from './styles';
+import {RootState} from '../../store';
 export function PreDepartureList() {
   const navigation = useNavigation();
   const [tab, setTab] = React.useState(0);
 
-  const {pdList} = useSelector(state => state.mychecklistreducer);
+  const {pdList} = useSelector<RootState, any>(
+    state => state.mychecklistreducer,
+  );
   const dispatch = useDispatch();
   const goback = () => {
     navigation.goBack();
@@ -76,7 +78,7 @@ export function PreDepartureList() {
 
   const FirstRoute = ({...e}) => {
     let data = e.route.items;
-    let completed = data.filter(e => e.completed || e.skipped);
+    let completed = data.filter(e => e.completed);
     let pending = data.filter(e => !e.completed);
     return (
       <ScrollView
@@ -184,17 +186,3 @@ export function PreDepartureList() {
     </SafeAreaView>
   );
 }
-
-const styles2 = StyleSheet.create({
-  container: {
-    flex: 1,
-    height: 1100,
-  },
-  tabBar: {
-    flexDirection: 'row',
-  },
-  tabItem: {
-    alignItems: 'center',
-    padding: 10,
-  },
-});

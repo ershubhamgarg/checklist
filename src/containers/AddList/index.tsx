@@ -1,5 +1,5 @@
 import {BlurView} from '@react-native-community/blur';
-import {useNavigation} from '@react-navigation/native';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
 import * as React from 'react';
 import {Pressable, TextInput, View} from 'react-native';
 import {useDispatch} from 'react-redux';
@@ -9,8 +9,9 @@ import ListText from '../../components/ListText';
 import {COLORS} from '../../constants/colors';
 import {addNewList} from '../../store/reducers/mychecklistreducer';
 import {styles} from './styles';
+import {ChecklistStackParamList} from '../../navigation/type';
 export function AddList() {
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProp<ChecklistStackParamList>>();
   const dispatch = useDispatch();
   const [text, setText] = React.useState('');
 
@@ -45,13 +46,13 @@ export function AddList() {
       <Header
         backButtonBackgroundStyle={styles.backButton}
         onBackPress={onBack}>
-        {text && (
+        {text ? (
           <Pressable onPress={onDone} style={styles.done}>
             <ListText bold style={styles.doneText}>
               Done
             </ListText>
           </Pressable>
-        )}
+        ) : null}
       </Header>
       <View style={styles.inputOuter}>
         <View style={styles.inputContainer}>

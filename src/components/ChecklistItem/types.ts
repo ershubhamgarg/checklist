@@ -1,6 +1,6 @@
 export type ChecklistItemProps = {
   item: any;
   index: number;
-  onCardPress?: () => void;
-  onPressDelete?: () => void;
+  onCardPress?: (e: any) => void;
+  onPressDelete?: (e: any) => void;
 };

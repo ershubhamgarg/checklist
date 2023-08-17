@@ -11,11 +11,11 @@ const MyListItem = ({
   index,
   input,
   text,
-  onChange,
-  onPressDelete,
-  onPressDone,
+  onChange = () => {},
+  onPressDelete = () => {},
+  onPressDone = () => {},
 }: ChecklistItemProps) => {
-  const onChangeText = e => {
+  const onChangeText = (e: string) => {
     onChange(e);
   };
   if (input) {

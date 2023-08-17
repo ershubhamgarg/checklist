@@ -1,4 +1,4 @@
-import {useNavigation} from '@react-navigation/native';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
 import * as React from 'react';
 import {FlatList, Pressable, SafeAreaView} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
@@ -11,13 +11,13 @@ import {
   onGetPDListRequest,
 } from '../../store/reducers/mychecklistreducer';
 import {styles} from './styles';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootState} from '../../store';
 import {ChecklistItemProps} from './type';
 import {usePDListProgress} from '../../utils';
+import {ChecklistStackParamList} from '../../navigation/type';
 
 export const Checklists = () => {
-  const navigation = useNavigation<NativeStackNavigationProp>();
+  const navigation = useNavigation<NavigationProp<ChecklistStackParamList>>();
   const {navigate} = navigation;
   const dispatch = useDispatch();
   const {myList, pdListLoading} = useSelector(

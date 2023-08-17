@@ -10,8 +10,8 @@ import {formatDate} from '../../helpers';
 const ChecklistItem = ({
   item,
   index,
-  onCardPress,
-  onPressDelete,
+  onCardPress = () => {},
+  onPressDelete = () => {},
 }: ChecklistItemProps) => {
   const [isOpen, setOpen] = React.useState(false);
   const {title, createdOn, items} = item;

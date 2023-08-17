@@ -1,14 +1,14 @@
 export type SwipableComponentProps = {
   children: JSX.Element;
   done?: boolean;
-  setOpen?: () => void | undefined;
+  setOpen?: (e: boolean) => void | undefined;
   deletee?: boolean;
   skip?: boolean;
   submitted?: boolean;
   onPressDone?: () => void;
   personal?: boolean;
-  onPressDelete?: () => void | undefined;
+  onPressDelete?: () => void;
   uncheck?: boolean;
-  onPressSubmitted?: () => void | undefined;
-  onPressSkipped?: () => void | undefined;
+  onPressSubmitted?: () => void;
+  onPressSkipped?: () => void;
 };

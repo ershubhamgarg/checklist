@@ -3,7 +3,7 @@ export type ChecklistItemProps = {
   index: number;
   input?: any;
   text?: string;
-  onChange?: () => void;
-  onPressDelete?: () => void;
-  onPressDone?: () => void;
+  onChange?: (e: any) => void;
+  onPressDelete?: (e: any) => void;
+  onPressDone?: (e: any) => void;
 };

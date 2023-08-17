@@ -1,21 +1,22 @@
 import * as React from 'react';
-import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import Swipeable from 'react-native-gesture-handler/Swipeable';
+import {GestureHandlerRootView, Swipeable} from 'react-native-gesture-handler';
+
 import {SwipeActions} from '../SwipeActions.tsx';
 import {SwipableComponentProps} from './types.js';
+
 const SwipableComponent = ({
   children,
   done,
-  setOpen,
+  setOpen = () => {},
   deletee,
   skip,
   submitted,
-  onPressDone,
+  onPressDone = () => {},
   personal,
-  onPressDelete,
+  onPressDelete = () => {},
   uncheck,
-  onPressSubmitted,
-  onPressSkipped,
+  onPressSubmitted = () => {},
+  onPressSkipped = () => {},
 }: SwipableComponentProps) => {
   const swipe = React.useRef();
 

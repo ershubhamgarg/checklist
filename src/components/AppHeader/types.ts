@@ -1,8 +1,10 @@
-import {GestureResponderEvent} from 'react-native';
+import {NativeSyntheticEvent, NativeTouchEvent, ViewStyle} from 'react-native';
 
 export type AppHeaderProps = {
   title?: string;
   children?: JSX.Element;
-  onBackPress?: GestureResponderEvent;
+  onBackPress?: () => void;
   backLabel?: string;
+  backButtonBackgroundStyle?: ViewStyle;
+  onCancelPress?: () => void;
 };

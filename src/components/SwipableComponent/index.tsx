@@ -2,6 +2,7 @@ import * as React from 'react';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import {SwipeActions} from '../SwipeActions.tsx';
+import {SwipableComponentProps} from './types.js';
 const SwipableComponent = ({
   children,
   done,
@@ -15,45 +16,43 @@ const SwipableComponent = ({
   uncheck,
   onPressSubmitted,
   onPressSkipped,
-}) =>
-  // : SwipableComponentProps
-  {
-    const swipe = React.useRef();
+}: SwipableComponentProps) => {
+  const swipe = React.useRef();
 
-    const onPressDoneCall = () => {
-      swipe?.current.close();
-      onPressDone();
-    };
-
-    const onPressDeleteCall = () => {
-      swipe?.current.close();
-      onPressDelete();
-    };
-    return (
-      <GestureHandlerRootView>
-        <Swipeable
-          ref={swipe}
-          overshootRight={false}
-          onSwipeableWillOpen={() => setOpen(true)}
-          onSwipeableWillClose={() => setOpen(false)}
-          renderRightActions={() => (
-            <SwipeActions
-              personal={personal}
-              done={done}
-              skip={skip}
-              deletee={deletee}
-              submitted={submitted}
-              onPressDone={onPressDoneCall}
-              onPressDelete={onPressDeleteCall}
-              uncheck={uncheck}
-              onPressSubmitted={onPressSubmitted}
-              onPressSkipped={onPressSkipped}
-            />
-          )}>
-          {children}
-        </Swipeable>
-      </GestureHandlerRootView>
-    );
+  const onPressDoneCall = () => {
+    swipe?.current.close();
+    onPressDone();
   };
+
+  const onPressDeleteCall = () => {
+    swipe?.current.close();
+    onPressDelete();
+  };
+  return (
+    <GestureHandlerRootView>
+      <Swipeable
+        ref={swipe}
+        overshootRight={false}
+        onSwipeableWillOpen={() => setOpen(true)}
+        onSwipeableWillClose={() => setOpen(false)}
+        renderRightActions={() => (
+          <SwipeActions
+            personal={personal}
+            done={done}
+            skip={skip}
+            deletee={deletee}
+            submitted={submitted}
+            onPressDone={onPressDoneCall}
+            onPressDelete={onPressDeleteCall}
+            uncheck={uncheck}
+            onPressSubmitted={onPressSubmitted}
+            onPressSkipped={onPressSkipped}
+          />
+        )}>
+        {children}
+      </Swipeable>
+    </GestureHandlerRootView>
+  );
+};
 
 export default SwipableComponent;

@@ -14,7 +14,7 @@ const ChecklistItem = ({
   onPressDelete,
 }: ChecklistItemProps) => {
   const [isOpen, setOpen] = React.useState(false);
-  const {title, createdOn, lastItem, items} = item;
+  const {title, createdOn, items} = item;
 
   const br = isOpen ? 0 : 7;
   let LastItem = items?.length ? items[items?.length - 1].title : 'None';

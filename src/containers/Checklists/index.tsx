@@ -8,12 +8,14 @@ import ChecklistItem from '../../components/ChecklistItem';
 import Icon from '../../components/Icon';
 import {deleteList} from '../../store/reducers/mychecklistreducer';
 import {styles} from './styles';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {RootState} from '../../store';
 
 export const Checklists = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<NativeStackNavigationProp>();
   const {navigate} = navigation;
   const dispatch = useDispatch();
-  const {myList} = useSelector(state => state.mychecklistreducer);
+  const {myList} = useSelector((state: RootState) => state.mychecklistreducer);
 
   const goback = () => {
     navigation.goBack();
@@ -35,7 +37,7 @@ export const Checklists = () => {
     dispatch(deleteList(e));
   };
 
-  const _renderItem = ({item, index}) =>
+  const _renderItem = ({item, index}: {item: any; index: number}) =>
     // : ChecklistItemProps
     {
       return (
@@ -43,7 +45,6 @@ export const Checklists = () => {
           item={item}
           index={index}
           onCardPress={onListCardPress}
-          // onCardPress={() => {}}
           onPressDelete={onPressDelete}
         />
       );

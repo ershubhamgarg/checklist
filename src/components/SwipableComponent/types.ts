@@ -6,4 +6,9 @@ export type SwipableComponentProps = {
   skip?: boolean;
   submitted?: boolean;
   onPressDone?: () => void;
+  personal?: boolean;
+  onPressDelete?: () => void | undefined;
+  uncheck?: boolean;
+  onPressSubmitted?: () => void | undefined;
+  onPressSkipped?: () => void | undefined;
 };

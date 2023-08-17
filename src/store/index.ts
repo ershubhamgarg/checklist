@@ -19,7 +19,7 @@ export const store = configureStore({
   middleware: [sagaMiddleware, logger],
 });
 
-// export type RootState = ReturnType<typeof store.getState>;
+export type RootState = ReturnType<typeof store.getState>;
 
 export const persistor = persistStore(store);
 

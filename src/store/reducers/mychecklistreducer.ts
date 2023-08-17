@@ -5,7 +5,6 @@ import {
   deleteItemFromListHelper,
   deleteListHelper,
   saveItemToListHelper,
-  skipItemHelper,
 } from '../../helpers';
 // import PDListJson from './../../json/PDList.json';
 const initialState = {

@@ -6,20 +6,30 @@ import Header from '../../components/AppHeader';
 import ChecklistHeader from '../../components/ChecklistHeader';
 import ChecklistItem from '../../components/ChecklistItem';
 import Icon from '../../components/Icon';
-import {deleteList} from '../../store/reducers/mychecklistreducer';
+import {
+  deleteList,
+  onGetPDListRequest,
+} from '../../store/reducers/mychecklistreducer';
 import {styles} from './styles';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootState} from '../../store';
+import {ChecklistItemProps} from './type';
 
 export const Checklists = () => {
   const navigation = useNavigation<NativeStackNavigationProp>();
   const {navigate} = navigation;
   const dispatch = useDispatch();
-  const {myList} = useSelector((state: RootState) => state.mychecklistreducer);
+  const {myList, pdListLoading} = useSelector(
+    (state: RootState) => state.mychecklistreducer,
+  );
 
   const goback = () => {
     navigation.goBack();
   };
+
+  React.useEffect(() => {
+    dispatch(onGetPDListRequest());
+  }, []);
 
   const onHeaderCardPress = () => {
     navigate('PreDepartureList');
@@ -37,8 +47,12 @@ export const Checklists = () => {
     dispatch(deleteList(e));
   };
 
-  const _renderItem = ({item, index}: {item: any; index: number}) =>
-    // : ChecklistItemProps
+  const onRefresh = () => {
+    dispatch(onGetPDListRequest());
+  };
+
+  const _renderItem = ({item, index}: ChecklistItemProps) =>
+    //
     {
       return (
         <ChecklistItem
@@ -58,8 +72,8 @@ export const Checklists = () => {
       <Header onBackPress={goback} title={'Checklists'} />
 
       <FlatList
-        onRefresh={() => {}}
-        refreshing={!true}
+        onRefresh={onRefresh}
+        refreshing={pdListLoading}
         renderItem={_renderItem}
         ListHeaderComponent={_listHeader}
         showsVerticalScrollIndicator={false}

@@ -1,11 +1,12 @@
-import {put, takeEvery} from 'redux-saga/effects';
+import {put, takeEvery, delay} from 'redux-saga/effects';
 import PDListJson from './../json/PDList.json';
 import {
   onGetPDListRequest,
   onGetPDListSuccess,
 } from '../store/reducers/mychecklistreducer';
 
-export function* getPDList() {
+function* getPDList() {
+  yield delay(5000); // response will come after 5 secs
   yield put(onGetPDListSuccess(PDListJson));
 }
 

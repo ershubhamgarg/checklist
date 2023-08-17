@@ -38,10 +38,6 @@ export function PreDepartureList() {
   let completed = pdList[0].items.filter(e => e.completed).length;
   let progress = completed / total;
 
-  React.useEffect(() => {
-    dispatch(onGetPDListRequest());
-  }, []);
-
   const _handleIndexChange = e => {
     setTab(e);
   };

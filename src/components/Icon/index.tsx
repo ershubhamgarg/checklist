@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {Image} from 'react-native';
 import {COLORS} from '../../constants/colors';
-import {IconProps} from './types';
 import {styles} from './styles';
 
 const Icon = ({name}) =>

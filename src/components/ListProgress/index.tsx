@@ -4,8 +4,8 @@ import LinearGradient from 'react-native-linear-gradient';
 import {COLORS} from '../../constants/colors';
 import ListText from '../ListText';
 import {styles} from './styles';
-export function ListProgress({progress}) // : {progress: number}
-{
+export function ListProgress({progress}) {
+  // : {progress: number}
   return (
     <View style={styles.container}>
       <View style={styles.inner}>

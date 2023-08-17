@@ -4,8 +4,8 @@ import {
   FlatList,
   Pressable,
   SafeAreaView,
-  View,
   ScrollView,
+  View,
 } from 'react-native';
 
 import {} from 'react-native-safe-area-context';
@@ -111,12 +111,9 @@ export function EditList(props: any) {
     );
   };
 
-  const renderList = ({}) => {
-    return null;
-  };
-
   const onCancel = () => {
     setEditing(false);
+    data.pop();
   };
 
   const showLabels =

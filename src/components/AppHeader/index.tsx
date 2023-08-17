@@ -3,7 +3,6 @@ import {Pressable, SafeAreaView, View} from 'react-native';
 import Icon from '../Icon';
 import ListText from '../ListText';
 import {styles} from './styles';
-import {AppHeaderProps} from './types';
 
 const Header = ({
   title,

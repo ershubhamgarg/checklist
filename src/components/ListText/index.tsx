@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Text} from 'react-native';
-import {ListTextProps} from './types';
 import {FONT} from '../../constants/fonts';
+import {ListTextProps} from './types';
 
 const ListText = ({
   bold,

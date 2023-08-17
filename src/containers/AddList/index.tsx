@@ -2,7 +2,6 @@ import {BlurView} from '@react-native-community/blur';
 import {useNavigation} from '@react-navigation/native';
 import * as React from 'react';
 import {Pressable, TextInput, View} from 'react-native';
-import {} from 'react-native-gesture-handler';
 import {useDispatch} from 'react-redux';
 import Header from '../../components/AppHeader';
 import Icon from '../../components/Icon';
@@ -19,9 +18,7 @@ export function AddList() {
     navigation.goBack();
   };
 
-  const onPressCross = () => {
-    setText('');
-  };
+  const onPressCross = () => {};
 
   const onChangeText = e => {
     setText(e);

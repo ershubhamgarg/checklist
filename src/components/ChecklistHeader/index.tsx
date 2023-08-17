@@ -5,7 +5,6 @@ import {COLORS} from '../../constants/colors';
 import Icon from '../Icon';
 import ListText from '../ListText';
 import {styles} from './styles';
-import {ChecklistHeaderProps} from './types';
 
 const ChecklistHeader = ({onCardPress}) =>
   // : ChecklistHeaderProps

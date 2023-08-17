@@ -2,7 +2,6 @@ import * as React from 'react';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import {SwipeActions} from '../SwipeActions.tsx';
-import {SwipableComponentProps} from './types.js';
 const SwipableComponent = ({
   children,
   done,

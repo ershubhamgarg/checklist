@@ -1,9 +1,8 @@
 import * as React from 'react';
 import {Pressable, View} from 'react-native';
+import Icon from '../Icon';
 import ListText from '../ListText';
 import {styles} from './styles';
-import Icon from '../Icon';
-import {SwipeActionsProps} from './types';
 
 export function SwipeActions({
   deletee,

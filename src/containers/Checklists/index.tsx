@@ -6,9 +6,8 @@ import Header from '../../components/AppHeader';
 import ChecklistHeader from '../../components/ChecklistHeader';
 import ChecklistItem from '../../components/ChecklistItem';
 import Icon from '../../components/Icon';
-import {styles} from './styles';
-import {ChecklistItemProps} from './type';
 import {deleteList} from '../../store/reducers/mychecklistreducer';
+import {styles} from './styles';
 
 export const Checklists = () => {
   const navigation = useNavigation();

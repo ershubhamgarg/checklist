@@ -1,60 +1,68 @@
-import {NavigationProp, useNavigation} from '@react-navigation/native';
 import * as React from 'react';
+import {NavigationProp, useNavigation} from '@react-navigation/native';
 import {FlatList, Pressable, SafeAreaView} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
+
 import Header from '../../components/AppHeader';
 import ChecklistHeader from '../../components/ChecklistHeader';
 import ChecklistItem from '../../components/ChecklistItem';
 import Icon from '../../components/Icon';
+
 import {RootState} from '../../store';
 import {
   deleteList,
   onGetPDListRequest,
 } from '../../store/reducers/mychecklistreducer';
-import {usePDListProgress} from '../../utils';
-import {styles} from './styles';
+
 import {ChecklistItemProps} from './type';
 import {ChecklistStackParamList} from '../../navigation/type';
+
+import {usePDListProgress} from '../../utils';
+import {styles} from './styles';
 
 export const Checklists = () => {
   const navigation = useNavigation<NavigationProp<ChecklistStackParamList>>();
   const {navigate} = navigation;
   const dispatch = useDispatch();
+
   const {myList, pdListLoading} = useSelector(
     (state: RootState) => state.mychecklistreducer,
   );
+
   const [progress] = usePDListProgress();
-  const goback = () => {
-    navigation.goBack();
-  };
 
   React.useEffect(() => {
     dispatch(onGetPDListRequest());
   }, []);
 
-  const onHeaderCardPress = () => {
+  const onHeaderCardPress = React.useCallback(() => {
     navigate('PreDepartureList');
-  };
+  }, [navigate]);
 
-  const onListCardPress = (e: any) => {
-    navigate('EditList', {listData: e});
-  };
+  const onListCardPress = React.useCallback(
+    (e: any) => {
+      navigate('EditList', {listData: e});
+    },
+    [navigate],
+  );
 
-  const onPressAdd = () => {
+  const onPressAdd = React.useCallback(() => {
     navigate('AddList');
-  };
+  }, [navigate]);
 
-  const onPressDelete = (e: any) => {
-    dispatch(deleteList(e));
-  };
+  const onPressDelete = React.useCallback(
+    (e: any) => {
+      dispatch(deleteList(e));
+    },
+    [dispatch],
+  );
 
-  const onRefresh = () => {
+  const onRefresh = React.useCallback(() => {
     dispatch(onGetPDListRequest());
-  };
+  }, [dispatch]);
 
-  const _renderItem = ({item, index}: ChecklistItemProps) =>
-    //
-    {
+  const _renderItem = React.useCallback(
+    ({item, index}: ChecklistItemProps) => {
       return (
         <ChecklistItem
           item={item}
@@ -63,17 +71,31 @@ export const Checklists = () => {
           onPressDelete={onPressDelete}
         />
       );
-    };
+    },
+    [onListCardPress, onPressDelete],
+  );
 
-  const _listHeader = () => {
+  const _listHeader = React.useCallback(() => {
     return (
       <ChecklistHeader progress={progress} onCardPress={onHeaderCardPress} />
     );
-  };
+  }, [onHeaderCardPress, progress]);
+
+  const renderHeader = React.useMemo(() => {
+    return <Header onBackPress={navigation.goBack} title={'Checklists'} />;
+  }, [navigation.goBack]);
+
+  const renderAddBtn = React.useMemo(() => {
+    return (
+      <Pressable onPress={onPressAdd}>
+        <Icon name="add" />
+      </Pressable>
+    );
+  }, [onPressAdd]);
+
   return (
     <SafeAreaView style={styles.container}>
-      <Header onBackPress={goback} title={'Checklists'} />
-
+      {renderHeader}
       <FlatList
         onRefresh={onRefresh}
         refreshing={pdListLoading}
@@ -82,9 +104,7 @@ export const Checklists = () => {
         showsVerticalScrollIndicator={false}
         data={myList}
       />
-      <Pressable onPress={onPressAdd}>
-        <Icon name="add" />
-      </Pressable>
+      {renderAddBtn}
     </SafeAreaView>
   );
 };

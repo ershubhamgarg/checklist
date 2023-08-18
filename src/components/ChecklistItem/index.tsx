@@ -63,4 +63,4 @@ const ChecklistItem = ({
     </View>
   );
 };
-export default ChecklistItem;
+export default React.memo(ChecklistItem);

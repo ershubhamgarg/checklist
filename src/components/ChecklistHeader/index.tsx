@@ -7,7 +7,7 @@ import ListText from '../ListText';
 import {styles} from './styles';
 import {ChecklistHeaderProps} from './types';
 
-const ChecklistHeader = ({onCardPress, progress}: ChecklistHeaderProps) => {
+const ChecklistHeader = ({onCardPress, progress = 0}: ChecklistHeaderProps) => {
   return (
     <View style={styles.container}>
       <ListText medium style={styles.headerTitle}>

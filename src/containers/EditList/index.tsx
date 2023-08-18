@@ -30,7 +30,6 @@ export function EditList(props: EditListProps) {
   const {myList} = useSelector<RootState, any>(
     state => state.mychecklistreducer,
   );
-
   const [data, setData] = React.useState([]);
 
   React.useEffect(() => {

@@ -3,7 +3,7 @@ import {configureStore} from '@reduxjs/toolkit';
 import {persistReducer, persistStore} from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {appReducer} from './reducers';
-import {logger} from 'redux-logger';
+// import {logger} from 'redux-logger';
 import {myChecklistSaga} from '../sagas/myChecklistSaga';
 const persistConfig = {
   key: 'root',

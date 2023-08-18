@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login screen Login screen snapshot created successfully 1`] = `
+<RCTSafeAreaView
+  style={
+    {
+      "alignItems": "center",
+      "backgroundColor": "white",
+      "flex": 1,
+      "justifyContent": "center",
+    }
+  }
+>
+  <View>
+    <Image
+      resizeMode="contain"
+      source={
+        {
+          "testUri": "../../../src/assets/images/mn.jpeg",
+        }
+      }
+      style={
+        {
+          "alignSelf": "center",
+          "height": 300,
+          "width": 300,
+        }
+      }
+    />
+    <View
+      accessibilityState={
+        {
+          "busy": undefined,
+          "checked": undefined,
+          "disabled": undefined,
+          "expanded": undefined,
+          "selected": undefined,
+        }
+      }
+      accessibilityValue={
+        {
+          "max": undefined,
+          "min": undefined,
+          "now": undefined,
+          "text": undefined,
+        }
+      }
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        {
+          "alignItems": "center",
+          "borderColor": "#005AA5",
+          "borderRadius": 25,
+          "borderWidth": 2,
+          "height": 50,
+          "justifyContent": "center",
+          "opacity": 1,
+        }
+      }
+    >
+      <Text
+        style={
+          [
+            {
+              "fontFamily": "Roboto-Medium",
+            },
+            {
+              "color": "#005AA5",
+              "fontSize": 15,
+            },
+          ]
+        }
+      >
+        Go to checklist
+      </Text>
+    </View>
+  </View>
+</RCTSafeAreaView>
+`;

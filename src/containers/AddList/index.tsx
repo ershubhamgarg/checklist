@@ -1,5 +1,5 @@
 import {BlurView} from '@react-native-community/blur';
-import {NavigationProp, useNavigation} from '@react-navigation/native';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import * as React from 'react';
 import {Platform, Pressable, TextInput, View} from 'react-native';
 import {useDispatch} from 'react-redux';
@@ -7,11 +7,13 @@ import Header from '../../components/AppHeader';
 import Icon from '../../components/Icon';
 import ListText from '../../components/ListText';
 import {COLORS} from '../../constants/colors';
+import {ChecklistStackParamList} from '../../navigation/type';
 import {addNewList} from '../../store/reducers/mychecklistreducer';
 import {styles} from './styles';
-import {ChecklistStackParamList} from '../../navigation/type';
-export function AddList() {
-  const navigation = useNavigation<NavigationProp<ChecklistStackParamList>>();
+type AddListProps = NativeStackScreenProps<ChecklistStackParamList, 'AddList'>;
+export function AddList(props: AddListProps) {
+  // const navigation = useNavigation();
+  const {navigation} = props;
   const dispatch = useDispatch();
   const [text, setText] = React.useState('');
 
@@ -21,7 +23,7 @@ export function AddList() {
 
   const onPressCross = () => {};
 
-  const onChangeText = e => {
+  const onChangeText = (e: string) => {
     setText(e);
   };
 

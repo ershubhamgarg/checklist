@@ -23,7 +23,7 @@ const Header = ({
           <Pressable
             style={backButtonBackgroundStyle}
             onPress={() =>
-              backLabel == 'Cancel' ? onCancelPress() : onBackPress()
+              backLabel == 'Cancel' ? onCancelPress?.() : onBackPress?.()
             }>
             <Icon />
           </Pressable>

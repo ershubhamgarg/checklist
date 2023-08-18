@@ -6,18 +6,18 @@ import Header from '../../components/AppHeader';
 import ChecklistHeader from '../../components/ChecklistHeader';
 import ChecklistItem from '../../components/ChecklistItem';
 import Icon from '../../components/Icon';
+import {RootState} from '../../store';
 import {
   deleteList,
   onGetPDListRequest,
 } from '../../store/reducers/mychecklistreducer';
-import {styles} from './styles';
-import {RootState} from '../../store';
-import {ChecklistItemProps} from './type';
 import {usePDListProgress} from '../../utils';
+import {styles} from './styles';
+import {ChecklistItemProps} from './type';
 import {ChecklistStackParamList} from '../../navigation/type';
 
 export const Checklists = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProp<ChecklistStackParamList>>();
   const {navigate} = navigation;
   const dispatch = useDispatch();
   const {myList, pdListLoading} = useSelector(
@@ -36,7 +36,7 @@ export const Checklists = () => {
     navigate('PreDepartureList');
   };
 
-  const onListCardPress = e => {
+  const onListCardPress = (e: any) => {
     navigate('EditList', {listData: e});
   };
 
@@ -44,7 +44,7 @@ export const Checklists = () => {
     navigate('AddList');
   };
 
-  const onPressDelete = e => {
+  const onPressDelete = (e: any) => {
     dispatch(deleteList(e));
   };
 

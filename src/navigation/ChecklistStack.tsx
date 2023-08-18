@@ -6,7 +6,6 @@ import {Checklists} from '../containers/Checklists';
 import {EditList} from '../containers/EditList';
 import {Login} from '../containers/Login';
 import {PreDepartureList} from '../containers/PreDepartureList';
-import {ParamListBase} from '@react-navigation/native';
 import {ChecklistStackParamList} from './type';
 
 const Stack = createNativeStackNavigator<ChecklistStackParamList>();

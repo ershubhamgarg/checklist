@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {View} from 'react-native';
 import {COLORS} from '../../constants/colors';
 import Icon from '../Icon';
@@ -35,7 +35,7 @@ const PDListItem = ({
         <View
           style={[
             styles.headerContainer,
-            {borderTopWidth: index == 0 ? 1 : 0},
+            {borderTopWidth: index === 0 ? 1 : 0},
           ]}>
           <View
             style={{
@@ -57,7 +57,6 @@ const PDListItem = ({
             <View
               style={{
                 flex: 0.5,
-
                 flexDirection: 'row',
                 justifyContent: 'space-between',
                 alignItems: 'flex-start',
@@ -99,7 +98,6 @@ const PDListItem = ({
             <View
               style={{
                 flex: 0.5,
-                // backgroundColor: 'red',
                 flexDirection: 'row',
                 justifyContent: 'space-between',
                 alignItems: 'flex-end',

@@ -1,4 +1,4 @@
-import {BlurView} from '@react-native-community/blur';
+// import {BlurView} from '@react-native-community/blur';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import * as React from 'react';
 import {Platform, Pressable, TextInput, View} from 'react-native';
@@ -40,7 +40,7 @@ export function AddList(props: AddListProps) {
     navigation.replace('EditList', {listData: newListObj});
   };
 
-  const Wrap = Platform.OS === 'android' ? View : BlurView;
+  const Wrap = Platform.OS === 'android' ? View : View;
   return (
     <Wrap
       blurAmount={0.2}

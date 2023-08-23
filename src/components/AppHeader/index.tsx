@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {Pressable, SafeAreaView, View} from 'react-native';
 import Icon from '../Icon';
 import ListText from '../ListText';
@@ -13,26 +13,33 @@ const Header = ({
   backButtonBackgroundStyle,
   onCancelPress,
 }: AppHeaderProps) => {
-  const f1 = children ? 0.3 : 0.2;
-  const f2 = children ? 0.5 : 0.8;
-  const fs = children ? 14 : 16;
+  const flex1Value = children ? 0.3 : 0.2;
+  const flex2Value = children ? 0.5 : 0.8;
+  const fontSizeValue = children ? 14 : 16;
+
+  const handleBackPress = () => {
+    if (backLabel === 'Cancel') {
+      onCancelPress?.();
+    } else {
+      onBackPress?.();
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.headerContainer}>
-        <View style={[styles.backIconContainer, {flex: f1}]}>
+        <View style={[styles.backIconContainer, {flex: flex1Value}]}>
           <Pressable
             style={backButtonBackgroundStyle}
-            onPress={() =>
-              backLabel == 'Cancel' ? onCancelPress?.() : onBackPress?.()
-            }>
+            onPress={handleBackPress}>
             <Icon />
           </Pressable>
-          {children ? (
-            <ListText style={{fontSize: fs}}>{backLabel}</ListText>
-          ) : null}
+          {children && (
+            <ListText style={{fontSize: fontSizeValue}}>{backLabel}</ListText>
+          )}
         </View>
-        <View style={[styles.titleContainer, {flex: f2}]}>
-          {children ? null : (
+        <View style={[styles.titleContainer, {flex: flex2Value}]}>
+          {!children && (
             <ListText bold style={styles.title}>
               {title}
             </ListText>
